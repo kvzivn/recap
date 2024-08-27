@@ -1,12 +1,16 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 import { Toaster } from "@/components/ui/sonner"
-import { cn } from "@/lib/utils"
 import "./globals.css"
 
-const fontSans = Inter({
-  subsets: ["latin"],
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
   variable: "--font-sans",
+})
+
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-mono",
 })
 
 export const metadata: Metadata = {
@@ -22,13 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(
-          `min-h-screen font-sans text-foreground antialiased`,
-          fontSans.variable
-        )}
+        className={`px-6 sm:px-0 ${geistSans.variable} ${geistMono.variable} font-sans tracking-wide bg-neutral-50 text-primary`}
       >
         {children}
-        <Toaster richColors />
+        <Toaster />
       </body>
     </html>
   )

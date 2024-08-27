@@ -1,36 +1,26 @@
-"use client"
-
-import ReminderItem from "@/components/ReminderItem"
 import { Separator } from "@/components/ui/separator"
-import ReminderInput from "@/components/ReminderInput"
-import useReminders from "@/lib/hooks/useReminders"
+import Footer from "@/components/Footer"
+import Header from "@/components/Header"
 
-const Home = () => {
-  const { reminders, refreshReminders } = useReminders()
-
+const Landing = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-8 -mt-16 max-w-md min-h-screen mx-auto">
-      <h2 className="mb-4 text-xl text-slate-700">
-        What would you like to remember more?
-      </h2>
+    <div className="flex flex-col justify-start sm:justify-center h-screen max-w-[35rem] mt-12 sm:-mt-12 mx-auto space-y-12">
+      <Header />
 
-      <ReminderInput refreshReminders={refreshReminders} />
+      <main className="flex flex-col justify-center space-y-6 text-neutral-600 leading-loose">
+        <p>remember more and retain what matters.</p>
+        <p>
+          transform books, articles or podcasts into lasting wisdom through the
+          power of spaced repetition. reminders are sent to your inbox or phone.
+        </p>
+        <p>focused on simplicity and ease-of-use.</p>
+      </main>
 
-      {reminders && reminders?.length > 0 && <Separator className="bg-white" />}
+      <Separator />
 
-      <div className="w-full space-y-2">
-        {reminders &&
-          reminders.length > 0 &&
-          reminders?.map((reminder: any) => (
-            <ReminderItem
-              key={reminder.$id}
-              reminder={reminder}
-              refreshReminders={refreshReminders}
-            />
-          ))}
-      </div>
+      <Footer />
     </div>
   )
 }
 
-export default Home
+export default Landing

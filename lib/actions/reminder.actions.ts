@@ -7,10 +7,10 @@ import {
   DATABASE_ID,
   databases,
 } from "../appwrite.config"
+import { revalidatePath } from "next/cache"
 
 export const createReminder = async (reminder: CreateReminderParams) => {
   try {
-    console.log("Creating a new reminder...")
     const newReminder = await databases.createDocument(
       DATABASE_ID!,
       REMINDER_COLLECTION_ID!,
@@ -21,6 +21,8 @@ export const createReminder = async (reminder: CreateReminderParams) => {
     if (!newReminder) {
       throw new Error("Failed to create a new reminder")
     }
+
+    revalidatePath("/")
   } catch (error) {
     console.error("An error occurred while creating a new reminder:", error)
     throw error
@@ -38,6 +40,8 @@ export const deleteReminder = async (reminderId: string) => {
     if (!deletedReminder) {
       throw new Error("Failed to delete the reminder")
     }
+
+    revalidatePath("/")
   } catch (error) {
     console.error("An error occurred while deleting the reminder:", error)
     throw error
