@@ -4,7 +4,7 @@ import Header from "@/components/Header"
 
 const Landing = () => {
   return (
-    <div className="flex flex-col justify-start sm:justify-center h-screen max-w-[35rem] mt-12 sm:-mt-12 mx-auto space-y-12">
+    <div className="flex flex-col justify-start sm:justify-center h-screen max-w-[35rem] mt-24 sm:-mt-12 mx-auto space-y-12">
       <Header />
 
       <main className="flex flex-col justify-center space-y-6 text-neutral-600 leading-loose">

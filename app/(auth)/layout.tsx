@@ -4,8 +4,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <section className="w-full h-screen flex justify-center items-center">
-      <div className="w-64 mx-auto">{children}</div>
+    <section className="-mt-16 sm:mt-0 w-full h-screen flex justify-center items-center">
+      <div className="w-72 sm:w-64 mx-auto">{children}</div>
     </section>
   )
 }
