@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link"
-import Image from "next/image"
 import React, { useState } from "react"
 
 import { z } from "zod"
@@ -20,7 +19,7 @@ import { useRouter } from "next/navigation"
 import { signIn, signUp } from "@/lib/actions/user.actions"
 import { AuthValidation } from "@/lib/validation"
 import { toast } from "sonner"
-import Logo from "@/public/logo.svg"
+import Logo from "@/components/Logo"
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter()
@@ -70,9 +69,7 @@ const AuthForm = ({ type }: { type: string }) => {
   return (
     <section>
       <header className="flex flex-col mb-8 gap-5 md:gap-6 items-center">
-        <Link href="/">
-          <Image priority alt="logo" src={Logo} className="h-7 w-7" />
-        </Link>
+        <Logo />
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-lg font-semibold">
             {type === "sign-in" ? "Sign in to Recap" : "Sign up for Recap"}
@@ -89,7 +86,11 @@ const AuthForm = ({ type }: { type: string }) => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Email" {...field} />
+                    <Input
+                      placeholder="Email"
+                      className="focus-visible:border-stone-300"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,7 +103,12 @@ const AuthForm = ({ type }: { type: string }) => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Password" type="password" {...field} />
+                    <Input
+                      placeholder="Password"
+                      type="password"
+                      className="focus-visible:border-stone-300"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

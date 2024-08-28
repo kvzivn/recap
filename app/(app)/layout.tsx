@@ -1,4 +1,4 @@
-import NavBar from "../../components/NavBar"
+import Header from "@/components/Header"
 import { getLoggedInUser } from "@/lib/actions/user.actions"
 import { redirect } from "next/navigation"
 
@@ -12,10 +12,11 @@ export default async function RootLayout({
   if (!loggedIn) redirect("/sign-in")
 
   return (
-    <main>
-      <NavBar />
-      {children}
-      <footer>footer</footer>
-    </main>
+    <div className="grid place-items-center h-screen max-w-[35rem] mx-auto">
+      <div className="flex flex-col w-full min-h-[26rem] space-y-12">
+        <Header loggedIn={loggedIn} />
+        {children}
+      </div>
+    </div>
   )
 }

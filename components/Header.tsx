@@ -1,53 +1,105 @@
 "use client"
 
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import Logo from "@/public/logo.svg"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
+import { pricingCopy, landingCopy, howItWorksCopy } from "@/lib/constants"
+import { useRouter, usePathname } from "next/navigation"
+import { logoutAccount } from "@/lib/actions/user.actions"
+import Logo from "@/components/Logo"
 
-const Header = () => {
+const Header = ({ loggedIn }: { loggedIn: boolean }) => {
+  const router = useRouter()
+  const pathname = usePathname()
   const [pricingVisible, setPricingVisible] = useState(false)
+  const [howItWorksVisible, setHowItWorksVisible] = useState(false)
+  const [content, setContent] = useState(landingCopy)
+  const [isAnimating, setIsAnimating] = useState(false)
 
-  const showPricing = () => {
-    setPricingVisible(true)
-    const mainElement = document.querySelector("main")
-    if (mainElement) {
-      const originalHeight = mainElement.offsetHeight
-      mainElement.innerHTML =
-        "<p>free: 3 reminders per month.</p><p>basic: 10 reminders for $2.99/month.</p><p>genius: 25 reminders for $4.99/month.</p>"
-      mainElement.style.height = `${originalHeight}px`
-    }
+  const handleLogout = async () => {
+    await logoutAccount()
+    router.push("/")
   }
 
-  const hidePricing = () => {
-    setPricingVisible(false)
+  const updateMainContent = (
+    newContent: string,
+    visible: boolean,
+    isHowItWorks: boolean
+  ) => {
+    setIsAnimating(true)
+    setTimeout(() => {
+      setPricingVisible(isHowItWorks ? false : visible)
+      setHowItWorksVisible(isHowItWorks ? visible : false)
+      setContent(newContent)
+      setIsAnimating(false)
+    }, 350)
+  }
+
+  const showPricing = () => updateMainContent(pricingCopy, true, false)
+  const resetContent = () => updateMainContent(landingCopy, false, false)
+  const showHowItWorks = () => updateMainContent(howItWorksCopy, true, true)
+
+  useEffect(() => {
     const mainElement = document.querySelector("main")
     if (mainElement) {
-      mainElement.innerHTML =
-        "<p>remember more and retain what matters.</p><p>transform books, articles or podcasts into lasting wisdom through the power of spaced repetition. reminders are sent to your inbox or phone.</p><p>focused on simplicity and ease-of-use.</p>"
+      const currentHeight = mainElement.offsetHeight
+      mainElement.style.height = `${currentHeight}px`
+      mainElement.innerHTML = content
+      const newHeight = mainElement.scrollHeight
+      mainElement.style.height = `${newHeight}px`
     }
-  }
+  }, [content])
 
   return (
-    <header className="flex items-center justify-between">
-      <Button variant="link" onClick={hidePricing} className="-ml-3">
-        <Image priority alt="logo" src={Logo} className="h-7 w-7" />
-      </Button>
-      <div className="flex items-center gap-12 sm:gap-8 -mr-3">
-        <Button
-          variant="link"
-          className={cn(pricingVisible ? "underline" : "")}
-          onClick={showPricing}
-        >
-          pricing
-        </Button>
-        <Button variant="link" asChild>
-          <Link href="/sign-in">log in</Link>
-        </Button>
-      </div>
-    </header>
+    <>
+      <header className="flex items-center justify-between">
+        <Logo resetContent={resetContent} className="-ml-3" />
+        <div className="flex items-center gap-12 sm:gap-6 -mr-3">
+          {loggedIn ? (
+            <>
+              <Button variant="link" asChild>
+                <Link
+                  href="/settings"
+                  className={pathname === "/settings" ? "underline" : ""}
+                >
+                  settings
+                </Link>
+              </Button>
+              <Button variant="link" onClick={handleLogout}>
+                log out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                variant="link"
+                className={cn(howItWorksVisible ? "underline" : "")}
+                onClick={showHowItWorks}
+              >
+                how it works
+              </Button>
+              <Button
+                variant="link"
+                className={cn(pricingVisible ? "underline" : "")}
+                onClick={showPricing}
+              >
+                pricing
+              </Button>
+              <Button variant="link" asChild>
+                <Link href="/sign-in">log in</Link>
+              </Button>
+            </>
+          )}
+        </div>
+      </header>
+      <style jsx global>{`
+        main {
+          transition: opacity 0.35s ease-in-out;
+          opacity: ${isAnimating ? 0 : 1};
+        }
+      `}</style>
+    </>
   )
 }
 

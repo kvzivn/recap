@@ -6,6 +6,7 @@ import { deleteReminder } from "@/lib/actions/reminder.actions"
 import { Reminder } from "@/lib/types/appwrite.types"
 import { toast } from "sonner"
 import { useState } from "react"
+import { Card } from "./ui/card"
 
 interface ReminderItemProps {
   reminder: Reminder
@@ -27,22 +28,19 @@ const ReminderItem = ({ reminder }: ReminderItemProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-4 pt-4 px-6 pb-6 bg-white rounded-xl border border-slate-100 shadow-md">
-      <div className="flex items-center justify-between">
-        <div className="max-w-64 text-foreground">{reminder.prompt}</div>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onDelete}
-          disabled={isDeleting}
-        >
-          <TrashIcon className="w-4 h-4" />
-          <span className="sr-only">Delete</span>
-        </Button>
-      </div>
-
-      <p className="text-sm text-gray-600">{reminder.summary}</p>
-    </div>
+    <Card className="flex items-center justify-between px-3 bg-transparent">
+      <div className="max-w-64 text-sm">{reminder.prompt}</div>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={onDelete}
+        disabled={isDeleting}
+      >
+        <TrashIcon className="w-4 h-4" />
+        <span className="sr-only">Delete</span>
+      </Button>
+      {/* <p className="text-sm text-gray-600">{reminder.summary}</p> */}
+    </Card>
   )
 }
 

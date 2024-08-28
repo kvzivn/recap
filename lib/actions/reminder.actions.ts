@@ -22,7 +22,7 @@ export const createReminder = async (reminder: CreateReminderParams) => {
       throw new Error("Failed to create a new reminder")
     }
 
-    revalidatePath("/")
+    revalidatePath("/home")
   } catch (error) {
     console.error("An error occurred while creating a new reminder:", error)
     throw error
@@ -41,7 +41,7 @@ export const deleteReminder = async (reminderId: string) => {
       throw new Error("Failed to delete the reminder")
     }
 
-    revalidatePath("/")
+    revalidatePath("/home")
   } catch (error) {
     console.error("An error occurred while deleting the reminder:", error)
     throw error

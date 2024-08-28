@@ -37,4 +37,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  input {
+    @apply autofill:shadow-[inset_0_0_0px_1000px_#fafafa];
+  }
+
+  ul {
+    @apply list-disc list-outside pl-5 my-2;
+  }
+
+  li {
+    @apply mb-2;
+  }
 }

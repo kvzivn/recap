@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const Footer = () => {
   return (
-    <footer className="flex items-center justify-between">
+    <footer className="flex items-center justify-between pt-3">
       <Button variant="link" asChild className="-ml-3">
         <Link href="https://kevinivan.com" target="_blank">
           made with ♡
