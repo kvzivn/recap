@@ -88,10 +88,10 @@ const Settings = () => {
             onClick={() => window.history.back()}
           >
             <ArrowLeftIcon className="w-4 h-4 mr-2" />
-            Back
+            back
           </Button>
           <Button type="submit" disabled={isLoading}>
-            {isLoading ? "Saving..." : "Save changes"}
+            {isLoading ? "saving..." : "save changes"}
           </Button>
         </div>
       </form>

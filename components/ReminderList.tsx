@@ -1,3 +1,5 @@
+"use client"
+
 import {
   BookOpen,
   Clapperboard,
@@ -5,6 +7,7 @@ import {
   Lightbulb,
   Mic,
   RefreshCcw,
+  TriangleAlert,
 } from "lucide-react"
 import {
   Accordion,
@@ -15,15 +18,18 @@ import {
 import { Reminder } from "@/lib/types/appwrite.types"
 import { Button } from "./ui/button"
 import DeleteButton from "@/components/DeleteButton"
+import { useReminderContext } from "@/app/contexts/ReminderContext"
 
 const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
+  const { generating } = useReminderContext()
+
   const getIcon = (summaryString: string) => {
     let parsedSummary
     try {
       parsedSummary = JSON.parse(summaryString)
     } catch (error) {
       console.error("Error parsing summary JSON:", error)
-      parsedSummary = { category: "unknown", summary: "Invalid summary format" }
+      parsedSummary = { category: "error", summary: "Invalid summary format" }
     }
     const category = parsedSummary.category
 
@@ -36,6 +42,8 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
         return <Clapperboard className="w-4 h-4" />
       case "audio":
         return <Mic className="w-4 h-4" />
+      case "error":
+        return <TriangleAlert className="w-4 h-4" />
       default:
         return <Lightbulb className="w-4 h-4" />
     }
@@ -48,7 +56,7 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
     } catch (error) {
       console.error("Error parsing summary JSON:", error)
       return {
-        __html: "Couldn't create summary. Please try a different prompt.",
+        __html: "couldn't create a summary. please try a different prompt.",
       }
     }
   }
@@ -56,6 +64,27 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
   return (
     <>
       <Accordion type="single" collapsible className="w-full mt-10 px-2">
+        {generating ? (
+          <div className="h-[3.75rem]">
+            <div
+              className="
+                relative
+                w-full
+                top-5
+                isolate
+                overflow-hidden
+                rounded-md
+                before:absolute before:inset-0
+                before:-translate-x-full
+                before:animate-[shimmer_2s_infinite]
+                before:bg-gradient-to-r
+                before:from-transparent before:via-stone-400/50 before:to-transparent"
+            >
+              <div className="w-full h-5 bg-neutral-200/50 rounded-md" />
+            </div>
+          </div>
+        ) : null}
+
         {reminders.map((reminder) => (
           <AccordionItem key={reminder.$id} value={reminder.$id}>
             <AccordionTrigger>
@@ -68,7 +97,7 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
             </AccordionTrigger>
             <AccordionContent>
               <div
-                className="mt-2 space-y-4"
+                className="mt-1 space-y-4"
                 dangerouslySetInnerHTML={getSummaryHtml(reminder.summary)}
               />
               <div className="mt-5 mb-3">

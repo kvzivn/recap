@@ -20,10 +20,12 @@ import { signIn, signUp } from "@/lib/actions/user.actions"
 import { AuthValidation } from "@/lib/validation"
 import { toast } from "sonner"
 import Logo from "@/components/Logo"
+import { cn } from "@/lib/utils"
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const [fadeOut, setFadeOut] = useState(false)
 
   const form = useForm<z.infer<typeof AuthValidation>>({
     resolver: zodResolver(AuthValidation),
@@ -54,20 +56,22 @@ const AuthForm = ({ type }: { type: string }) => {
           password: data.password,
         })
 
-        if (response) router.push("/home")
+        if (response) {
+          setFadeOut(true)
+          router.push("/home")
+        }
       }
     } catch (error) {
       toast.error(
         type === "sign-in" ? "Could not sign in." : "Could not sign up."
       )
       console.log(error)
-    } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <section>
+    <section className={cn("transition-opacity", fadeOut && "opacity-0")}>
       <header className="flex flex-col mb-8 gap-5 md:gap-6 items-center">
         <Logo />
         <div className="flex flex-col gap-1 md:gap-3">

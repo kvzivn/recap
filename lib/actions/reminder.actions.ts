@@ -1,6 +1,6 @@
 "use server"
 
-import { ID } from "node-appwrite"
+import { ID, Query } from "node-appwrite"
 
 import {
   REMINDER_COLLECTION_ID,
@@ -48,11 +48,12 @@ export const deleteReminder = async (reminderId: string) => {
   }
 }
 
-export const getReminders = async () => {
+export const getReminders = async ({ userId }: { userId: string }) => {
   try {
     const reminders = await databases.listDocuments(
       DATABASE_ID!,
-      REMINDER_COLLECTION_ID!
+      REMINDER_COLLECTION_ID!,
+      [Query.equal("userId", [userId]), Query.orderDesc("$createdAt")]
     )
 
     return reminders.documents

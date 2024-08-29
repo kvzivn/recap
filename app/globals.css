@@ -39,7 +39,7 @@
   }
 
   input {
-    @apply autofill:shadow-[inset_0_0_0px_1000px_#fafafa];
+    @apply autofill:shadow-[inset_0_0_0px_1000px_#fafafa] focus-visible:autofill:shadow-[inset_0_0_0px_1000px_#fff] hover:autofill:shadow-[inset_0_0_0px_1000px_#fff] group-hover:autofill:shadow-[inset_0_0_0px_1000px_#fff];
   }
 
   ul {
