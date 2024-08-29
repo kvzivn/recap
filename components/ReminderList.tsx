@@ -64,7 +64,7 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
   return (
     <>
       <Accordion type="single" collapsible className="w-full mt-10 px-2">
-        {generating ? (
+        {reminders.length > 0 && generating ? (
           <div className="h-[3.75rem]">
             <div
               className="

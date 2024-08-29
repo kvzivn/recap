@@ -63,7 +63,7 @@ const AuthForm = ({ type }: { type: string }) => {
       }
     } catch (error) {
       toast.error(
-        type === "sign-in" ? "Could not sign in." : "Could not sign up."
+        type === "sign-in" ? "Could not log in." : "Could not sign up."
       )
       console.log(error)
       setIsLoading(false)
@@ -76,7 +76,7 @@ const AuthForm = ({ type }: { type: string }) => {
         <Logo />
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-lg font-semibold">
-            {type === "sign-in" ? "Sign in to Recap" : "Sign up for Recap"}
+            {type === "sign-in" ? "Log in to Recap" : "Sign up for Recap"}
           </h1>
         </div>
       </header>
@@ -128,7 +128,7 @@ const AuthForm = ({ type }: { type: string }) => {
                   Loading...
                 </>
               ) : type === "sign-in" ? (
-                "Sign in"
+                "Log in"
               ) : (
                 "Sign up"
               )}
@@ -147,7 +147,7 @@ const AuthForm = ({ type }: { type: string }) => {
               ? "Don't have an account?"
               : "Already have an account?"}
             <span className="font-semibold ml-1">
-              {type === "sign-in" ? "Sign up" : "Sign in"}
+              {type === "sign-in" ? "Sign up" : "Log in"}
               <ArrowRight className="h-4 w-4 ml-0.5 inline transition group-hover:translate-x-0.5 group-hover:text-primary" />
             </span>
           </p>

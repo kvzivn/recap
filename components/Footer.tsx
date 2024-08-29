@@ -10,8 +10,10 @@ const Footer = () => {
           made with ♡
         </Link>
       </Button>
-      <Button className="pl-4">
-        sign up now <ArrowRight className="h-4 w-4 ml-1.5" />
+      <Button className="pl-4" asChild>
+        <Link href="/sign-up">
+          sign up now <ArrowRight className="h-4 w-4 ml-1.5" />
+        </Link>
       </Button>
     </footer>
   )

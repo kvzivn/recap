@@ -15,7 +15,6 @@ import { Mic, Clapperboard, FileText } from "lucide-react"
 import { Card } from "./ui/card"
 import { Reminder } from "@/lib/types/appwrite.types"
 import { useReminderContext } from "@/app/contexts/ReminderContext"
-import { useState } from "react"
 
 const ReminderInput = ({
   reminders,
@@ -65,7 +64,9 @@ const ReminderInput = ({
       toast.error("Could not create reminder")
       setGenerating(false)
     } finally {
-      form.setValue("prompt", "")
+      setTimeout(() => {
+        form.setValue("prompt", "")
+      }, 500)
     }
   }
 
@@ -104,7 +105,7 @@ const ReminderInput = ({
         </Button>
       </form>
 
-      {reminders.length === 0 && !generating && (
+      {reminders.length === 0 && (
         <div className="flex items-end mt-8 gap-4 space-y-4">
           {cardData.map((card, index) => (
             <Card
