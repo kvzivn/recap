@@ -13,7 +13,6 @@ const DeleteButton = ({ reminder }: { reminder: Reminder }) => {
   const onDelete = async () => {
     setIsDeleting(true)
     try {
-      console.log(reminder)
       await deleteReminder(reminder.$id)
     } catch (error) {
       console.error(error)
@@ -35,7 +34,7 @@ const DeleteButton = ({ reminder }: { reminder: Reminder }) => {
       ) : (
         <Trash className="w-4 h-4 mr-2" />
       )}
-      {isDeleting ? "deleting..." : "delete"}
+      {isDeleting ? "Deleting..." : "Delete"}
     </Button>
   )
 }

@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { ArrowLeftIcon } from "lucide-react"
+import { ArrowLeftIcon, RotateCw } from "lucide-react"
 
 const formSchema = z.object({
   notificationType: z.enum(["all", "mentions", "none"], {
@@ -35,9 +35,8 @@ const Settings = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
     setTimeout(() => {
-      console.log(values)
       setIsLoading(false)
-    }, 1000)
+    }, 1500)
   }
 
   return (
@@ -49,7 +48,7 @@ const Settings = () => {
           render={({ field }) => (
             <FormItem className="px-2 space-y-6">
               <FormLabel className="text-[0.95rem]">
-                how often would you like to receive reminders?
+                How often would you like to receive reminders?
               </FormLabel>
               <FormControl>
                 <RadioGroup
@@ -61,19 +60,19 @@ const Settings = () => {
                     <FormControl>
                       <RadioGroupItem value="all" />
                     </FormControl>
-                    <FormLabel className="font-normal">weekly</FormLabel>
+                    <FormLabel className="font-normal">Weekly</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
                       <RadioGroupItem value="mentions" />
                     </FormControl>
-                    <FormLabel className="font-normal">bi-weekly</FormLabel>
+                    <FormLabel className="font-normal">Bi-weekly</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
                       <RadioGroupItem value="none" />
                     </FormControl>
-                    <FormLabel className="font-normal">monthly</FormLabel>
+                    <FormLabel className="font-normal">Monthly</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -88,10 +87,16 @@ const Settings = () => {
             onClick={() => window.history.back()}
           >
             <ArrowLeftIcon className="w-4 h-4 mr-2" />
-            back
+            Back
           </Button>
           <Button type="submit" disabled={isLoading}>
-            {isLoading ? "saving..." : "save changes"}
+            {isLoading ? (
+              <>
+                <RotateCw className="h-4 w-4 animate-spin" /> &nbsp; Saving...
+              </>
+            ) : (
+              "Save changes"
+            )}
           </Button>
         </div>
       </form>

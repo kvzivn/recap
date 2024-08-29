@@ -63,11 +63,11 @@ const Header = ({ loggedIn }: { loggedIn: boolean }) => {
                   href="/settings"
                   className={pathname === "/settings" ? "underline" : ""}
                 >
-                  settings
+                  Settings
                 </Link>
               </Button>
               <Button variant="link" onClick={handleLogout}>
-                log out
+                Log out
               </Button>
             </>
           ) : (
@@ -77,17 +77,17 @@ const Header = ({ loggedIn }: { loggedIn: boolean }) => {
                 className={cn(howItWorksVisible ? "underline" : "")}
                 onClick={showHowItWorks}
               >
-                how it works
+                How it works
               </Button>
               <Button
                 variant="link"
                 className={cn(pricingVisible ? "underline" : "")}
                 onClick={showPricing}
               >
-                pricing
+                Pricing
               </Button>
               <Button variant="link" asChild>
-                <Link href="/sign-in">log in</Link>
+                <Link href="/sign-in">Log in</Link>
               </Button>
             </>
           )}

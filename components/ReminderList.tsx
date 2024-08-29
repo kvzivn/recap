@@ -56,7 +56,7 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
     } catch (error) {
       console.error("Error parsing summary JSON:", error)
       return {
-        __html: "couldn't create a summary. please try a different prompt.",
+        __html: "Couldn't create a summary. Please try a different prompt.",
       }
     }
   }
@@ -102,10 +102,6 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
               />
               <div className="mt-5 mb-3">
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline">
-                    <RefreshCcw className="w-4 h-4 mr-2" />
-                    re-generate
-                  </Button>
                   <DeleteButton reminder={reminder} />
                 </div>
               </div>

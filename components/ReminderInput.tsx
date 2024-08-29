@@ -88,7 +88,7 @@ const ReminderInput = ({
             <FormItem className="flex w-full flex-col">
               <FormControl>
                 <Input
-                  placeholder="what would you like to remember better?"
+                  placeholder="What would you like to remember better?"
                   className="border-none focus-visible:ring-0"
                   {...field}
                 />
