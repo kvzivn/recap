@@ -83,7 +83,7 @@ const config = {
       },
       animation: {
         shimmer: "shimmer 2s linear infinite",
-        fadeIn: "fadeIn 0.35s 0.25s ease-in-out forwards",
+        fadeIn: "fadeIn 0.35s ease-in-out forwards",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
