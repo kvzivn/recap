@@ -17,7 +17,6 @@ const DeleteButton = ({ reminder }: { reminder: Reminder }) => {
     } catch (error) {
       console.error(error)
       toast.error("Could not delete reminder")
-    } finally {
       setIsDeleting(false)
     }
   }

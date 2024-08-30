@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
-import { landingCopy } from "@/lib/constants"
+import { landingCopy } from "@/lib/copy"
 
 const Landing = () => {
   return (

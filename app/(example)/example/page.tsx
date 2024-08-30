@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Clapperboard, FileText, X } from "lucide-react"
+import { BookOpen, Clapperboard, ExternalLink, FileText, X } from "lucide-react"
 import Link from "next/link"
 
 const ExampleEmail = () => {
@@ -18,6 +18,14 @@ const ExampleEmail = () => {
         <div className="flex items-center gap-3">
           <BookOpen className="w-5 h-5" />
           <h1 className="text-xl font-bold">Brave New World</h1>
+          <Button variant="ghost" asChild className="p-0">
+            <Link
+              href="https://www.goodreads.com/book/show/5129.Brave_New_World"
+              target="_blank"
+            >
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
         <div className="space-y-4">
           <p>
@@ -52,8 +60,12 @@ const ExampleEmail = () => {
       <div className="space-y-4">
         <div className="flex items-center gap-3">
           <Clapperboard className="w-5 h-5" />
-
           <h1 className="text-xl font-bold">Citizenfour</h1>
+          <Button variant="ghost" asChild className="p-0">
+            <Link href="https://www.imdb.com/title/tt4044364/" target="_blank">
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
         <div className="space-y-4">
           <p>
@@ -93,6 +105,14 @@ const ExampleEmail = () => {
           <h1 className="text-xl font-bold">
             Why China didn&apos;t invent ChatGPT
           </h1>
+          <Button variant="ghost" asChild className="p-0">
+            <Link
+              href="https://www.nytimes.com/2023/02/17/business/china-chatgpt-microsoft-openai.html"
+              target="_blank"
+            >
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
         <div className="space-y-4">
           <p>
