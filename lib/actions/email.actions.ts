@@ -230,7 +230,7 @@ export async function sendEmail(userId: string) {
   try {
     await messaging.createEmail(
       ID.unique(),
-      "Your Weekly Recap",
+      "Your weekly knowledge recap",
       emailHTML, // html goes here
       [], // topics (optional)
       [userId], // users (optional)
