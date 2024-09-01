@@ -15,15 +15,14 @@ const ExampleEmail = () => {
         </Button>
       </div>
       <div className="space-y-4">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
           <BookOpen className="w-5 h-5" />
-          <h1 className="text-xl font-bold">Brave New World</h1>
-          <Button variant="ghost" asChild className="p-0">
+          <Button variant="link" asChild>
             <Link
               href="https://www.goodreads.com/book/show/5129.Brave_New_World"
               target="_blank"
             >
-              <ExternalLink className="w-4 h-4" />
+              <h1 className="text-xl font-bold">Brave New World</h1>
             </Link>
           </Button>
         </div>
@@ -58,12 +57,11 @@ const ExampleEmail = () => {
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
           <Clapperboard className="w-5 h-5" />
-          <h1 className="text-xl font-bold">Citizenfour</h1>
-          <Button variant="ghost" asChild className="p-0">
+          <Button variant="link" asChild>
             <Link href="https://www.imdb.com/title/tt4044364/" target="_blank">
-              <ExternalLink className="w-4 h-4" />
+              <h1 className="text-xl font-bold">Citizenfour</h1>
             </Link>
           </Button>
         </div>
@@ -100,17 +98,16 @@ const ExampleEmail = () => {
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
           <FileText className="w-5 h-5" />
-          <h1 className="text-xl font-bold">
-            Why China didn&apos;t invent ChatGPT
-          </h1>
-          <Button variant="ghost" asChild className="p-0">
+          <Button variant="link" asChild>
             <Link
               href="https://www.nytimes.com/2023/02/17/business/china-chatgpt-microsoft-openai.html"
               target="_blank"
             >
-              <ExternalLink className="w-4 h-4" />
+              <h1 className="text-xl font-bold">
+                Why China didn&apos;t invent ChatGPT
+              </h1>
             </Link>
           </Button>
         </div>

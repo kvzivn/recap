@@ -28,9 +28,9 @@ const Header = ({ loggedIn }: { loggedIn: boolean }) => {
     isHowItWorks: boolean
   ) => {
     setIsAnimating(true)
+    setPricingVisible(isHowItWorks ? false : visible)
+    setHowItWorksVisible(isHowItWorks ? visible : false)
     setTimeout(() => {
-      setPricingVisible(isHowItWorks ? false : visible)
-      setHowItWorksVisible(isHowItWorks ? visible : false)
       setContent(newContent)
       setIsAnimating(false)
     }, 350)
@@ -55,17 +55,9 @@ const Header = ({ loggedIn }: { loggedIn: boolean }) => {
     <>
       <header className="flex items-center justify-between">
         <Logo resetContent={resetContent} className="-ml-3" />
-        <div className="flex items-center gap-12 sm:gap-6 -mr-3">
+        <div className="flex items-center gap-12 sm:gap-4 -mr-3">
           {loggedIn ? (
             <>
-              <Button variant="link" asChild>
-                <Link
-                  href="/settings"
-                  className={pathname === "/settings" ? "underline" : ""}
-                >
-                  Settings
-                </Link>
-              </Button>
               <Button variant="link" onClick={handleLogout}>
                 Log out
               </Button>
