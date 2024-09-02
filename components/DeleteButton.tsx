@@ -23,10 +23,10 @@ const DeleteButton = ({ reminder }: { reminder: Reminder }) => {
 
   return (
     <Button
-      size="sm"
       variant="outline"
       onClick={onDelete}
       disabled={isDeleting}
+      className="text-[0.95rem]"
     >
       {isDeleting ? (
         <Loader2 className="w-4 h-4 mr-2 animate-spin" />

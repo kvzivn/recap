@@ -24,11 +24,13 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 }
 
 export const signIn = async ({ email, password }: signInProps) => {
+  const sessionCookie = cookies()
+
   try {
     const { account } = await createAdminClient()
     const session = await account.createEmailPasswordSession(email, password)
 
-    cookies().set("appwrite-session", session.secret, {
+    sessionCookie.set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
       sameSite: "strict",
@@ -45,7 +47,7 @@ export const signIn = async ({ email, password }: signInProps) => {
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
   const { email } = userData
-
+  const sessionCookie = cookies()
   let newUserAccount
 
   try {
@@ -67,7 +69,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
 
     const session = await account.createEmailPasswordSession(email, password)
 
-    cookies().set("appwrite-session", session.secret, {
+    sessionCookie.set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
       sameSite: "strict",
@@ -96,10 +98,11 @@ export const getLoggedInUser = async () => {
 }
 
 export const logoutAccount = async () => {
+  const sessionCookie = cookies()
   try {
     const { account } = await createSessionClient()
 
-    cookies().delete("appwrite-session")
+    sessionCookie.delete("appwrite-session")
 
     await account.deleteSession("current")
   } catch (error) {

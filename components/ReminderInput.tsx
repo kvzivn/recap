@@ -57,6 +57,7 @@ const ReminderInput = ({
         userId,
         prompt: data.prompt,
         summary: summary || "Summary not available",
+        timesShown: 0,
       }
       await createReminder(reminder)
     } catch (error) {

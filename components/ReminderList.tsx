@@ -6,7 +6,6 @@ import {
   FileText,
   Lightbulb,
   Mic,
-  RefreshCcw,
   TriangleAlert,
 } from "lucide-react"
 import {
@@ -16,21 +15,28 @@ import {
   AccordionContent,
 } from "./ui/accordion"
 import { Reminder } from "@/lib/types/appwrite.types"
-import { Button } from "./ui/button"
 import DeleteButton from "@/components/DeleteButton"
 import { useReminderContext } from "@/app/contexts/ReminderContext"
 
 const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
   const { generating } = useReminderContext()
 
-  const getIcon = (summaryString: string) => {
-    let parsedSummary
+  const parseSummary = (summaryString: string) => {
+    const jsonString = summaryString.replace(/```json\n|```/g, "")
+
     try {
-      parsedSummary = JSON.parse(summaryString)
+      return JSON.parse(jsonString)
     } catch (error) {
       console.error("Error parsing summary JSON:", error)
-      parsedSummary = { category: "error", summary: "Invalid summary format" }
+      return {
+        category: "error",
+        summary: "Couldn't create summary. Please try a different prompt.",
+      }
     }
+  }
+
+  const getIcon = (summaryString: string) => {
+    const parsedSummary = parseSummary(summaryString)
     const category = parsedSummary.category
 
     switch (category) {
@@ -50,15 +56,8 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
   }
 
   const getSummaryHtml = (summaryString: string) => {
-    try {
-      const parsedSummary = JSON.parse(summaryString)
-      return { __html: parsedSummary.summary }
-    } catch (error) {
-      console.error("Error parsing summary JSON:", error)
-      return {
-        __html: "Couldn't create a summary. Please try a different prompt.",
-      }
-    }
+    const parsedSummary = parseSummary(summaryString)
+    return { __html: parsedSummary.summary }
   }
 
   return (

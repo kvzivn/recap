@@ -6,14 +6,3 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value))
-
-// vercel.json
-
-// {
-//   "crons": [
-//     {
-//       "path": "/api/cron/schedule-emails",
-//       "schedule": "0 0 * * *"
-//     }
-//   ]
-// }
