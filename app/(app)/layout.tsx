@@ -12,8 +12,8 @@ export default async function RootLayout({
   if (!loggedIn) redirect("/sign-in")
 
   return (
-    <div className="grid place-items-center h-full max-w-[35rem] mx-auto opacity-0 animate-fadeIn">
-      <div className="flex flex-col w-full min-h-[26rem] space-y-12">
+    <div className="grid place-items-center min-h-full max-w-[35rem] mx-auto opacity-0 animate-fadeIn">
+      <div className="flex flex-col w-full min-h-[26rem] space-y-12 my-16">
         <Header loggedIn={loggedIn} />
         {children}
       </div>
