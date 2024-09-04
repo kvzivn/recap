@@ -65,7 +65,7 @@ const MobileMenu = ({
               exit={{ rotate: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <X size={24} />
+              <X size={28} />
             </motion.div>
           ) : (
             <motion.div
@@ -75,7 +75,7 @@ const MobileMenu = ({
               exit={{ rotate: -90 }}
               transition={{ duration: 0.2 }}
             >
-              <Menu size={24} />
+              <Menu size={28} />
             </motion.div>
           )}
         </AnimatePresence>
