@@ -75,7 +75,7 @@ const AuthForm = ({ type }: { type: string }) => {
       <header className="flex flex-col mb-8 gap-5 md:gap-6 items-center">
         <Logo />
         <div className="flex flex-col gap-1 md:gap-3">
-          <h1 className="text-lg font-semibold">
+          <h1 className="text-xl sm:text-lg font-semibold">
             {type === "sign-in" ? "Log in to Recap" : "Sign up for Recap"}
           </h1>
         </div>
@@ -121,7 +121,11 @@ const AuthForm = ({ type }: { type: string }) => {
           </div>
 
           <div className="flex flex-col mt-6 gap-4">
-            <Button type="submit" disabled={isLoading}>
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="h-11 sm:h-9 text-[16px] sm:text-[0.925rem]"
+            >
               {isLoading ? (
                 <>
                   <RotateCw className="h-4 w-4 animate-spin" /> &nbsp;

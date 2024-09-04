@@ -12,7 +12,7 @@ export default async function RootLayout({
 
   return (
     <section className="-mt-16 sm:mt-0 w-full h-screen flex justify-center items-center">
-      <div className="w-72 sm:w-64 mx-auto">{children}</div>
+      <div className="w-80 sm:w-64 mx-auto">{children}</div>
     </section>
   )
 }

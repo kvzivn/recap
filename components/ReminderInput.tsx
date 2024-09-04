@@ -40,7 +40,7 @@ const ReminderInput = ({
 
   const cardData = [
     {
-      prompt: "lex fridman and perplexity ceo",
+      prompt: "lex fridman and donald trump",
       icon: Mic,
     },
     {
@@ -104,10 +104,10 @@ const ReminderInput = ({
                 <Input
                   placeholder={
                     isMobile
-                      ? "What do you want to remember?"
+                      ? "What do you want to remember better?"
                       : "What would you like to remember better?"
                   }
-                  className="border-none focus-visible:ring-0"
+                  className="border-none focus-visible:ring-0 text-base sm:text-sm"
                   {...field}
                 />
               </FormControl>
@@ -124,15 +124,15 @@ const ReminderInput = ({
       </form>
 
       {reminders.length === 0 && (
-        <div className="flex flex-col sm:flex-row items-end mt-8 gap-4 space-y-4">
+        <div className="flex items-end mt-8 gap-4 space-y-4">
           {cardData.map((card, index) => (
             <Card
               key={index}
-              className={`p-4 w-full sm:h-28 text-[0.95rem] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 transition-colors`}
+              className={`px-3 py-4 sm:p-5 w-full text-sm cursor-pointer hover:bg-white hover:border-stone-300 transition-colors`}
               onClick={() => handleCardClick(card.prompt)}
             >
               <card.icon className="w-5 h-5 sm:w-4 sm:h-4 text-muted-foreground" />
-              <p className="pl-1 sm:pl-0 mt-5">{card.prompt}</p>
+              <p className="pl-1 sm:pl-0 mt-4 sm:mt-5">{card.prompt}</p>
             </Card>
           ))}
         </div>
