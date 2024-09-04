@@ -5,7 +5,7 @@ import { landingCopy } from "@/lib/copy"
 
 const Landing = () => {
   return (
-    <div className="flex flex-col justify-start sm:justify-center h-screen max-w-[35rem] -mt-4 mx-auto space-y-12 opacity-0 animate-fadeIn">
+    <div className="flex flex-col justify-center h-screen max-w-[35rem] -mt-4 mx-auto space-y-12 opacity-0 animate-fadeIn">
       <Header loggedIn={false} />
 
       <main

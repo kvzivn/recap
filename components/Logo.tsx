@@ -8,10 +8,14 @@ import { useRouter, usePathname } from "next/navigation"
 
 const Logo = ({
   resetContent,
+  showMobileMenu,
+  setShowMobileMenu,
   className,
 }: {
   resetContent?: () => void
   className?: string
+  showMobileMenu?: boolean
+  setShowMobileMenu?: (showMobileMenu: boolean) => void
 }) => {
   const pathname = usePathname()
   const router = useRouter()
@@ -19,6 +23,9 @@ const Logo = ({
   const spinTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const triggerSpin = () => {
+    if (showMobileMenu && setShowMobileMenu) {
+      setShowMobileMenu(!showMobileMenu)
+    }
     if (!isSpinning) {
       setIsSpinning(true)
       spinTimeoutRef.current = setTimeout(() => {

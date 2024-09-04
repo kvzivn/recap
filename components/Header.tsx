@@ -5,17 +5,18 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { pricingCopy, landingCopy, howItWorksCopy } from "@/lib/copy"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { logoutAccount } from "@/lib/actions/user.actions"
 import Logo from "@/components/Logo"
+import MobileMenu from "./MobileMenu"
 
 const Header = ({ loggedIn }: { loggedIn: boolean }) => {
   const router = useRouter()
-  const pathname = usePathname()
   const [pricingVisible, setPricingVisible] = useState(false)
   const [howItWorksVisible, setHowItWorksVisible] = useState(false)
   const [content, setContent] = useState(landingCopy)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   const handleLogout = async () => {
     await logoutAccount()
@@ -53,8 +54,13 @@ const Header = ({ loggedIn }: { loggedIn: boolean }) => {
 
   return (
     <>
-      <header className="flex items-center justify-between">
-        <Logo resetContent={resetContent} className="-ml-3" />
+      <header className="relative flex items-center justify-between">
+        <Logo
+          resetContent={resetContent}
+          showMobileMenu={showMobileMenu}
+          setShowMobileMenu={setShowMobileMenu}
+          className="-ml-3"
+        />
         <div className="flex items-center gap-12 sm:gap-4 -mr-3">
           {loggedIn ? (
             <>
@@ -63,25 +69,35 @@ const Header = ({ loggedIn }: { loggedIn: boolean }) => {
               </Button>
             </>
           ) : (
-            <>
-              <Button
-                variant="link"
-                className={cn(howItWorksVisible ? "underline" : "")}
-                onClick={showHowItWorks}
-              >
-                How it works
-              </Button>
-              <Button
-                variant="link"
-                className={cn(pricingVisible ? "underline" : "")}
-                onClick={showPricing}
-              >
-                Pricing
-              </Button>
-              <Button variant="link" asChild>
-                <Link href="/sign-in">Log in</Link>
-              </Button>
-            </>
+            <div>
+              <MobileMenu
+                showHowItWorks={showHowItWorks}
+                showPricing={showPricing}
+                howItWorksVisible={howItWorksVisible}
+                pricingVisible={pricingVisible}
+                showMobileMenu={showMobileMenu}
+                setShowMobileMenu={setShowMobileMenu}
+              />
+              <div className="hidden sm:flex items-center gap-4 -mr-3">
+                <Button
+                  variant="link"
+                  className={cn(howItWorksVisible ? "underline" : "")}
+                  onClick={showHowItWorks}
+                >
+                  How it works
+                </Button>
+                <Button
+                  variant="link"
+                  className={cn(pricingVisible ? "underline" : "")}
+                  onClick={showPricing}
+                >
+                  Pricing
+                </Button>
+                <Button variant="link" asChild>
+                  <Link href="/sign-in">Log in</Link>
+                </Button>
+              </div>
+            </div>
           )}
         </div>
       </header>

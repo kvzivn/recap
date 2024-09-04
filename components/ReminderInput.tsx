@@ -15,6 +15,7 @@ import { Mic, Clapperboard, FileText } from "lucide-react"
 import { Card } from "./ui/card"
 import { Reminder } from "@/lib/types/appwrite.types"
 import { useReminderContext } from "@/app/contexts/ReminderContext"
+import { useEffect, useState } from "react"
 
 const ReminderInput = ({
   reminders,
@@ -24,6 +25,18 @@ const ReminderInput = ({
   userId: string
 }) => {
   const { generating, setGenerating } = useReminderContext()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   const cardData = [
     {
@@ -89,7 +102,11 @@ const ReminderInput = ({
             <FormItem className="flex w-full flex-col">
               <FormControl>
                 <Input
-                  placeholder="What would you like to remember better?"
+                  placeholder={
+                    isMobile
+                      ? "What do you want to remember?"
+                      : "What would you like to remember better?"
+                  }
                   className="border-none focus-visible:ring-0"
                   {...field}
                 />
@@ -107,15 +124,15 @@ const ReminderInput = ({
       </form>
 
       {reminders.length === 0 && (
-        <div className="flex items-end mt-8 gap-4 space-y-4">
+        <div className="flex flex-col sm:flex-row items-end mt-8 gap-4 space-y-4">
           {cardData.map((card, index) => (
             <Card
               key={index}
-              className={`p-4 text-sm w-full h-28 cursor-pointer hover:bg-white hover:border-stone-300 transition-colors`}
+              className={`p-4 w-full sm:h-28 text-[0.95rem] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 transition-colors`}
               onClick={() => handleCardClick(card.prompt)}
             >
-              <card.icon className="w-4 h-4 text-muted-foreground" />
-              <p className="mt-5">{card.prompt}</p>
+              <card.icon className="w-5 h-5 sm:w-4 sm:h-4 text-muted-foreground" />
+              <p className="pl-1 sm:pl-0 mt-5">{card.prompt}</p>
             </Card>
           ))}
         </div>

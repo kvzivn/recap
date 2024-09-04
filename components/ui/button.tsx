@@ -17,12 +17,12 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-base font-medium underline-offset-8 hover:underline",
+        link: "font-medium underline-offset-8 hover:underline",
       },
       size: {
-        default: "h-9 px-3 text-base sm:text-[0.925rem]",
+        default: "h-9 px-3 text-[0.925rem]",
         sm: "h-8 px-3 text-sm",
-        lg: "h-11 px-8 text-base sm:text-[0.95rem]",
+        lg: "h-11 px-8 text-[0.95rem]",
         icon: "h-10 w-10",
         iconLink: "h-8 w-8",
       },
