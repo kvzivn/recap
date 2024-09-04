@@ -123,7 +123,7 @@ const ReminderInput = ({
           {cardData.map((card, index) => (
             <Card
               key={index}
-              className={`px-3 py-4 sm:p-5 w-full text-[2.325vw] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 transition-colors`}
+              className={`px-3 py-4 sm:p-5 w-full text-[3vw] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 transition-colors`}
               onClick={() => handleCardClick(card.prompt)}
             >
               <card.icon className="w-5 h-5 sm:w-4 sm:h-4 text-muted-foreground" />
