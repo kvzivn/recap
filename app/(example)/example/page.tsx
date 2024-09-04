@@ -14,6 +14,52 @@ const ExampleEmail = () => {
           </Link>
         </Button>
       </div>
+
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <Clapperboard className="w-5 h-5" />
+          <h1 className="text-lg sm:text-xl font-bold pt-0.25">Citizenfour</h1>
+        </div>
+        <div className="space-y-4">
+          <p>
+            Citizenfour is a documentary directed by Laura Poitras that
+            chronicles the events surrounding Edward Snowden&apos;s disclosure
+            of classified NSA documents. The film provides an in-depth look at
+            Snowden&apos;s motivations, the risks he took, and the impact of his
+            revelations on global privacy and surveillance.
+          </p>
+          <p>
+            The documentary begins with Poitras receiving encrypted emails from
+            Snowden, who uses the alias &apos;Citizenfour.&apos; It then follows
+            her journey to Hong Kong, where she meets Snowden along with
+            journalists Glenn Greenwald and Ewen MacAskill. The film captures
+            the tense moments as Snowden reveals the extent of the NSA&apos;s
+            surveillance programs, including the collection of phone records and
+            internet data from millions of people worldwide.
+          </p>
+          <p>
+            Key themes include the ethical implications of mass surveillance,
+            the role of whistleblowers in society, and the balance between
+            national security and individual privacy. The documentary also
+            highlights the personal sacrifices Snowden made, including leaving
+            his family and living in exile.
+          </p>
+          <p>
+            It&apos;s a compelling and thought-provoking film that raises
+            important questions about government transparency and the right to
+            privacy in the digital age.
+          </p>
+        </div>
+        <Link
+          href="https://www.google.com/search?q=Citizenfour"
+          target="_blank"
+        >
+          <Button variant="link" className="px-0 pt-8">
+            Read more
+          </Button>
+        </Link>
+      </div>
+
       <div className="space-y-4">
         <div className="flex items-center gap-1">
           <FileText className="w-5 h-5" />
@@ -70,51 +116,6 @@ const ExampleEmail = () => {
         </div>
         <Link
           href="https://www.google.com/search?q=Why+China+didn%27t+invent+ChatGPT"
-          target="_blank"
-        >
-          <Button variant="link" className="px-0 pt-8">
-            Read more
-          </Button>
-        </Link>
-      </div>
-
-      <div className="space-y-4">
-        <div className="flex items-center gap-3">
-          <Clapperboard className="w-5 h-5" />
-          <h1 className="text-lg sm:text-xl font-bold pt-0.25">Citizenfour</h1>
-        </div>
-        <div className="space-y-4">
-          <p>
-            Citizenfour is a documentary directed by Laura Poitras that
-            chronicles the events surrounding Edward Snowden&apos;s disclosure
-            of classified NSA documents. The film provides an in-depth look at
-            Snowden&apos;s motivations, the risks he took, and the impact of his
-            revelations on global privacy and surveillance.
-          </p>
-          <p>
-            The documentary begins with Poitras receiving encrypted emails from
-            Snowden, who uses the alias &apos;Citizenfour.&apos; It then follows
-            her journey to Hong Kong, where she meets Snowden along with
-            journalists Glenn Greenwald and Ewen MacAskill. The film captures
-            the tense moments as Snowden reveals the extent of the NSA&apos;s
-            surveillance programs, including the collection of phone records and
-            internet data from millions of people worldwide.
-          </p>
-          <p>
-            Key themes include the ethical implications of mass surveillance,
-            the role of whistleblowers in society, and the balance between
-            national security and individual privacy. The documentary also
-            highlights the personal sacrifices Snowden made, including leaving
-            his family and living in exile.
-          </p>
-          <p>
-            It&apos;s a compelling and thought-provoking film that raises
-            important questions about government transparency and the right to
-            privacy in the digital age.
-          </p>
-        </div>
-        <Link
-          href="https://www.google.com/search?q=Citizenfour"
           target="_blank"
         >
           <Button variant="link" className="px-0 pt-8">
