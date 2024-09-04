@@ -15,7 +15,7 @@ import { Mic, Clapperboard, FileText } from "lucide-react"
 import { Card } from "./ui/card"
 import { Reminder } from "@/lib/types/appwrite.types"
 import { useReminderContext } from "@/app/contexts/ReminderContext"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 const ReminderInput = ({
   reminders,
@@ -25,17 +25,16 @@ const ReminderInput = ({
   userId: string
 }) => {
   const { generating, setGenerating } = useReminderContext()
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+    if (navigator.userAgent.indexOf("iPhone") > -1) {
+      document
+        .querySelector('meta[name="viewport"]')
+        ?.setAttribute(
+          "content",
+          "width=device-width, initial-scale=1, maximum-scale=1"
+        )
     }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-
-    return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
   const cardData = [
@@ -102,12 +101,8 @@ const ReminderInput = ({
             <FormItem className="flex w-full flex-col">
               <FormControl>
                 <Input
-                  placeholder={
-                    isMobile
-                      ? "What do you want to remember better?"
-                      : "What would you like to remember better?"
-                  }
-                  className="border-none focus-visible:ring-0 text-base sm:text-sm"
+                  placeholder="What would you like to remember better?"
+                  className="border-none focus-visible:ring-0 text-sm sm:text-sm"
                   {...field}
                 />
               </FormControl>
