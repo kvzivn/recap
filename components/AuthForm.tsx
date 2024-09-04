@@ -75,7 +75,7 @@ const AuthForm = ({ type }: { type: string }) => {
       <header className="flex flex-col mb-8 gap-5 md:gap-6 items-center">
         <Logo />
         <div className="flex flex-col gap-1 md:gap-3">
-          <h1 className="text-xl sm:text-lg font-semibold">
+          <h1 className="text-[1.35rem] sm:text-lg font-semibold">
             {type === "sign-in" ? "Log in to Recap" : "Sign up for Recap"}
           </h1>
         </div>
@@ -146,7 +146,7 @@ const AuthForm = ({ type }: { type: string }) => {
         className="group"
       >
         <div className="mt-8 transition-colors group-hover:border-slate-400">
-          <p className="text-[0.8125rem] text-center transition-colors text-neutral-7 group-hover:text-black">
+          <p className="text-base sm:text-[0.8125rem] text-center transition-colors text-neutral-7 group-hover:text-black">
             {type === "sign-in"
               ? "Don't have an account?"
               : "Already have an account?"}
