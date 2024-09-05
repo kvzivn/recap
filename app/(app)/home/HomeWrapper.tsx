@@ -8,10 +8,10 @@ import { Reminder } from "@/lib/types/appwrite.types"
 
 const HomeWrapper = ({
   initialReminders,
-  userId,
+  user,
 }: {
   initialReminders: Reminder[]
-  userId: string
+  user: User
 }) => {
   const { setGenerating } = useReminderContext()
 
@@ -21,7 +21,7 @@ const HomeWrapper = ({
 
   return (
     <div>
-      <ReminderInput reminders={initialReminders} userId={userId} />
+      <ReminderInput reminders={initialReminders} user={user} />
       <ReminderList reminders={initialReminders} />
     </div>
   )

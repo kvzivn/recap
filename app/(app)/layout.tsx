@@ -7,14 +7,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const loggedIn = await getLoggedInUser()
+  const user = await getLoggedInUser()
+  const loggedIn = user ? true : false
+  const remindersLeft = user?.remindersLeft || 3
 
   if (!loggedIn) redirect("/sign-in")
 
   return (
     <div className="grid place-items-center min-h-full max-w-[35rem] mx-auto opacity-0 animate-fadeIn">
       <div className="flex flex-col w-full min-h-[26rem] space-y-12 my-16">
-        <Header loggedIn={loggedIn} />
+        <Header loggedIn={loggedIn} remindersLeft={remindersLeft} />
         {children}
       </div>
     </div>

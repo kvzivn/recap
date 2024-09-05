@@ -12,6 +12,7 @@ declare type User = {
   $id: string
   email: string
   userId: string
+  remindersLeft: number
 }
 
 declare type NewUserParams = {

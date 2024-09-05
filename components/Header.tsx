@@ -10,7 +10,13 @@ import { logoutAccount } from "@/lib/actions/user.actions"
 import Logo from "@/components/Logo"
 import MobileMenu from "./MobileMenu"
 
-const Header = ({ loggedIn }: { loggedIn: boolean }) => {
+const Header = ({
+  loggedIn,
+  remindersLeft,
+}: {
+  loggedIn: boolean
+  remindersLeft?: number
+}) => {
   const router = useRouter()
   const [pricingVisible, setPricingVisible] = useState(false)
   const [howItWorksVisible, setHowItWorksVisible] = useState(false)
@@ -64,6 +70,9 @@ const Header = ({ loggedIn }: { loggedIn: boolean }) => {
         <div className="flex items-center gap-12 sm:gap-4 -mr-3">
           {loggedIn ? (
             <>
+              <Button variant="link" onClick={handleLogout}>
+                {remindersLeft} reminder{remindersLeft === 1 ? "" : "s"} left
+              </Button>
               <Button variant="link" onClick={handleLogout}>
                 Log out
               </Button>

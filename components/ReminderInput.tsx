@@ -16,13 +16,14 @@ import { Card } from "./ui/card"
 import { Reminder } from "@/lib/types/appwrite.types"
 import { useReminderContext } from "@/app/contexts/ReminderContext"
 import { useEffect } from "react"
+import { updateUserRemindersLeft } from "@/lib/actions/user.actions"
 
 const ReminderInput = ({
   reminders,
-  userId,
+  user,
 }: {
   reminders: Reminder[]
-  userId: string
+  user: User
 }) => {
   const { generating, setGenerating } = useReminderContext()
 
@@ -66,12 +67,16 @@ const ReminderInput = ({
     try {
       const summary = await createSummary(data.prompt)
       const reminder = {
-        userId,
+        userId: user.userId,
         prompt: data.prompt,
         summary: summary || "Summary not available",
         timesShown: 0,
       }
       await createReminder(reminder)
+      await updateUserRemindersLeft(
+        user.$id,
+        user.remindersLeft ? user.remindersLeft - 1 : 2
+      )
     } catch (error) {
       console.error(error)
       toast.error("Could not create reminder")

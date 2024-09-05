@@ -4,6 +4,7 @@ import { ID, Query } from "node-appwrite"
 import { createAdminClient, createSessionClient } from "./appwrite.actions"
 import { cookies } from "next/headers"
 import { parseStringify } from "../utils"
+import { revalidatePath } from "next/cache"
 
 const { DATABASE_ID, USER_COLLECTION_ID } = process.env
 
@@ -107,5 +108,22 @@ export const logoutAccount = async () => {
     await account.deleteSession("current")
   } catch (error) {
     return null
+  }
+}
+
+export const updateUserRemindersLeft = async (
+  userId: string,
+  remindersLeft: number
+) => {
+  try {
+    const { database } = await createAdminClient()
+
+    await database.updateDocument(DATABASE_ID!, USER_COLLECTION_ID!, userId, {
+      remindersLeft,
+    })
+
+    revalidatePath("/home")
+  } catch (error) {
+    console.log(error)
   }
 }

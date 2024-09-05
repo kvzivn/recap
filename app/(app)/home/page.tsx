@@ -10,7 +10,7 @@ const Home = async () => {
 
   return (
     <ReminderProvider>
-      <HomeWrapper initialReminders={reminders} userId={user.userId} />
+      <HomeWrapper initialReminders={reminders} user={user} />
     </ReminderProvider>
   )
 }
