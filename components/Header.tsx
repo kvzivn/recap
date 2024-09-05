@@ -67,7 +67,7 @@ const Header = ({
           setShowMobileMenu={setShowMobileMenu}
           className="-ml-3"
         />
-        <div className="flex items-center gap-12 sm:gap-4 -mr-3">
+        <div className="flex items-center gap-4 -mr-3">
           {loggedIn ? (
             <>
               <Button variant="link" onClick={handleLogout}>
