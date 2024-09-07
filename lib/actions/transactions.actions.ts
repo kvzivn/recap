@@ -40,8 +40,6 @@ export async function checkoutCredits(transaction: CheckoutTransactionParams) {
 
 export async function createTransaction(transaction: CreateTransactionParams) {
   try {
-    console.log("CREATING TRANSACTION")
-
     const newTransaction = await databases.createDocument(
       DATABASE_ID!,
       TRANSACTION_COLLECTION_ID!,
