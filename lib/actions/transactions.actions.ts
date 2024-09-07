@@ -31,8 +31,8 @@ export async function checkoutCredits(transaction: CheckoutTransactionParams) {
       buyerId: transaction.buyerId,
     },
     mode: "payment",
-    success_url: `${process.env.NEXT_PUBLIC_URL}/home`,
-    cancel_url: `${process.env.NEXT_PUBLIC_URL}/home`,
+    success_url: `${process.env.NEXT_PUBLIC_URL}/home?paymentSuccess=true`,
+    cancel_url: `${process.env.NEXT_PUBLIC_URL}/home?paymentCancelled=true`,
   })
 
   redirect(session.url!)
@@ -40,6 +40,8 @@ export async function checkoutCredits(transaction: CheckoutTransactionParams) {
 
 export async function createTransaction(transaction: CreateTransactionParams) {
   try {
+    console.log("CREATING TRANSACTION")
+
     const newTransaction = await databases.createDocument(
       DATABASE_ID!,
       TRANSACTION_COLLECTION_ID!,

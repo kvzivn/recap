@@ -5,8 +5,10 @@ import { checkoutCredits } from "@/lib/actions/transactions.actions"
 import { useEffect } from "react"
 import { toast } from "sonner"
 import { Button } from "./ui/button"
+import { useSearchParams } from "next/navigation"
 
 const Checkout = ({ user }: { user: User }) => {
+  const searchParams = useSearchParams()
   const remindersLeft = user?.remindersLeft === 0 ? 0 : user?.remindersLeft || 3
 
   useEffect(() => {
@@ -14,16 +16,18 @@ const Checkout = ({ user }: { user: User }) => {
   }, [])
 
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search)
-
-    if (query.get("success")) {
-      toast.success("10 reminders added to your account.")
+    if (searchParams.get("paymentSuccess") === "true") {
+      setTimeout(() => {
+        toast.success("10 reminders added to your account.")
+      })
     }
 
-    if (query.get("canceled")) {
-      toast.error("Order cancelled.")
+    if (searchParams.get("paymentCancelled") === "true") {
+      setTimeout(() => {
+        toast.error("Order cancelled.")
+      })
     }
-  }, [])
+  }, [searchParams])
 
   const onCheckout = async () => {
     const transaction = {
@@ -34,11 +38,9 @@ const Checkout = ({ user }: { user: User }) => {
   }
 
   return (
-    <form action={onCheckout} method="POST">
-      <Button variant="link" type="submit">
-        {remindersLeft} reminder{remindersLeft === 1 ? "" : "s"} available
-      </Button>
-    </form>
+    <Button variant="link" onClick={onCheckout}>
+      {remindersLeft} reminder{remindersLeft === 1 ? "" : "s"} available
+    </Button>
   )
 }
 
