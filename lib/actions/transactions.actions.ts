@@ -61,7 +61,7 @@ export async function createTransaction(transaction: CreateTransactionParams) {
 
     const remindersLeft = user.remindersLeft || 0
 
-    await addUserReminders(transaction.buyerId, remindersLeft + 25)
+    await addUserReminders(transaction.buyerId, remindersLeft + 10)
 
     return JSON.parse(JSON.stringify(newTransaction))
   } catch (error) {
