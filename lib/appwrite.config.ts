@@ -7,6 +7,7 @@ export const {
   DATABASE_ID,
   USER_COLLECTION_ID,
   REMINDER_COLLECTION_ID,
+  TRANSACTION_COLLECTION_ID,
 } = process.env
 
 const client = new sdk.Client()

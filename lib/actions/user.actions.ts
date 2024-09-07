@@ -127,3 +127,15 @@ export const updateUserRemindersLeft = async (
     console.log(error)
   }
 }
+
+export const addUserReminders = async (userId: string, reminders: number) => {
+  try {
+    const { database } = await createAdminClient()
+
+    await database.updateDocument(DATABASE_ID!, USER_COLLECTION_ID!, userId, {
+      remindersLeft: reminders,
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -9,14 +9,9 @@ import { useRouter } from "next/navigation"
 import { logoutAccount } from "@/lib/actions/user.actions"
 import Logo from "@/components/Logo"
 import MobileMenu from "./MobileMenu"
+import Checkout from "./Checkout"
 
-const Header = ({
-  loggedIn,
-  remindersLeft,
-}: {
-  loggedIn: boolean
-  remindersLeft?: number
-}) => {
+const Header = ({ user }: { user?: User }) => {
   const router = useRouter()
   const [pricingVisible, setPricingVisible] = useState(false)
   const [howItWorksVisible, setHowItWorksVisible] = useState(false)
@@ -68,11 +63,9 @@ const Header = ({
           className="-ml-3"
         />
         <div className="flex items-center gap-4 -mr-3">
-          {loggedIn ? (
+          {user ? (
             <>
-              <Button variant="link" onClick={handleLogout}>
-                {remindersLeft} reminder{remindersLeft === 1 ? "" : "s"} left
-              </Button>
+              <Checkout user={user} />
               <Button variant="link" onClick={handleLogout}>
                 Log out
               </Button>

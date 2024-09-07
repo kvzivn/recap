@@ -34,3 +34,12 @@ declare type CreateReminderParams = {
   prompt: string
   summary: string
 }
+
+declare type CheckoutTransactionParams = {
+  buyerId: string
+}
+
+declare type CreateTransactionParams = {
+  stripeId: string
+  buyerId: string
+}

@@ -97,7 +97,11 @@ const ReminderInput = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="group flex items-center gap-4 w-full pl-1 pr-2 py-1 border-2 border-input rounded-lg bg-neutral-50 hover:bg-white hover:border-stone-300 focus-within:border-stone-500 focus-within:bg-white focus-within:hover:border-stone-500 transition-colors"
+        className={`group flex items-center gap-4 w-full pl-1 pr-2 py-1 border-2 border-input rounded-lg bg-neutral-50 ${
+          user.remindersLeft > 0
+            ? "hover:bg-white hover:border-stone-300 focus-within:border-stone-500 focus-within:bg-white focus-within:hover:border-stone-500"
+            : ""
+        } transition-colors`}
       >
         <FormField
           control={form.control}
@@ -108,6 +112,7 @@ const ReminderInput = ({
                 <Input
                   placeholder="What would you like to remember better?"
                   className="border-none focus-visible:ring-0 text-sm"
+                  disabled={user.remindersLeft === 0}
                   {...field}
                 />
               </FormControl>
