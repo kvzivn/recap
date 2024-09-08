@@ -1,7 +1,9 @@
-export function generateWeeklyRecapEmail(reminders: any[]) {
+import { Reminder } from "../types/appwrite.types"
+
+export function generateRecapEmail(reminders: Reminder[]) {
   return `
     <html>
-      <body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 100px 20px 60px; color: #463f3a;">
+      <body style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 100px 20px 60px; color: #463f3a;">
         <img src="https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d46933001424afed1d/view?project=66afd4ad0003766d66f5" alt="Logo" style="width: 30px; height: 30px; max-width: 100%; margin-bottom: 60px;">
         ${reminders
           .map((reminder) => {

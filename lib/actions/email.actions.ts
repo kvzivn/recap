@@ -7,29 +7,8 @@ import {
   databases,
   messaging,
 } from "../appwrite.config"
-import { generateWeeklyRecapEmail } from "../emails/weeklyRecapTemplate"
-
-export async function fetchUserIdsWithOldReminders() {
-  const sevenDaysAgo = new Date()
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
-
-  try {
-    const reminders = await databases.listDocuments(
-      DATABASE_ID!,
-      REMINDER_COLLECTION_ID!,
-      [Query.lessThan("createdAt", sevenDaysAgo.toISOString())]
-    )
-
-    const userIds = Array.from(
-      new Set(reminders.documents.map((reminder) => reminder.userId))
-    )
-
-    return userIds
-  } catch (error) {
-    console.error("Error fetching user IDs with old reminders:", error)
-    throw error
-  }
-}
+import { generateRecapEmail } from "../emails/recapTemplate"
+import { Reminder } from "../types/appwrite.types"
 
 export async function scheduleEmail(userId: string) {
   const now = new Date()
@@ -37,14 +16,20 @@ export async function scheduleEmail(userId: string) {
   const reminders = await databases.listDocuments(
     DATABASE_ID!,
     REMINDER_COLLECTION_ID!,
-    [Query.equal("userId", userId), Query.orderAsc("createdAt"), Query.limit(5)]
+    [
+      Query.equal("userId", userId),
+      Query.orderAsc("$createdAt"),
+      Query.limit(5),
+    ]
   )
 
-  const remindersToSend = reminders.documents.filter((reminder) => {
+  const remindersToSend: Reminder[] = (
+    reminders.documents as Reminder[]
+  ).filter((reminder) => {
     const timesShown = reminder.timesShown || 0
     const nextReminderDate = new Date(reminder.createdAt)
     nextReminderDate.setDate(
-      nextReminderDate.getDate() + Math.pow(2, timesShown) * 7
+      nextReminderDate.getDate() + getSpacedInterval(timesShown)
     )
     return nextReminderDate <= now
   })
@@ -54,24 +39,23 @@ export async function scheduleEmail(userId: string) {
     return
   }
 
-  const emailHTML = generateWeeklyRecapEmail(remindersToSend)
+  const emailHTML = generateRecapEmail(remindersToSend)
 
   try {
     await messaging.createEmail(
       ID.unique(),
-      "Your weekly recap",
-      emailHTML, // html goes here
-      [], // topics (optional)
-      [userId], // users (optional)
-      [], // targets (optional)
-      [], // cc (optional)
-      [], // bcc (optional)
-      [], // attachments (optional)
-      false, // draft (optional)
-      true // html (optional)
+      "Your personal reminders",
+      emailHTML,
+      [],
+      [userId],
+      [],
+      [],
+      [],
+      [],
+      false,
+      true
     )
 
-    // Update timesShown for each reminder
     for (const reminder of remindersToSend) {
       await databases.updateDocument(
         DATABASE_ID!,
@@ -80,6 +64,45 @@ export async function scheduleEmail(userId: string) {
         { timesShown: (reminder.timesShown || 0) + 1 }
       )
     }
+  } catch (error) {
+    console.error("Error sending email:", error)
+  }
+}
+
+function getSpacedInterval(timesShown: number): number {
+  const intervals = [1, 5, 14, 30, 90, 180, 365]
+  return timesShown < intervals.length ? intervals[timesShown] : 365
+}
+
+export async function sendEmail(userId: string) {
+  const reminders = await databases.listDocuments(
+    DATABASE_ID!,
+    REMINDER_COLLECTION_ID!,
+    [
+      Query.equal("userId", userId),
+      Query.orderAsc("$createdAt"),
+      Query.limit(5),
+    ]
+  )
+
+  const remindersToSend: Reminder[] = reminders.documents as Reminder[]
+
+  const emailHTML = generateRecapEmail(remindersToSend)
+
+  try {
+    await messaging.createEmail(
+      ID.unique(),
+      "Your personal reminders",
+      emailHTML,
+      [],
+      [userId],
+      [],
+      [],
+      [],
+      [],
+      false,
+      true
+    )
   } catch (error) {
     console.error("Error sending email:", error)
   }

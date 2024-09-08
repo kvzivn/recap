@@ -17,6 +17,7 @@ import { Reminder } from "@/lib/types/appwrite.types"
 import { useReminderContext } from "@/app/contexts/ReminderContext"
 import { useEffect } from "react"
 import { updateUserRemindersLeft } from "@/lib/actions/user.actions"
+import { sendEmail } from "@/lib/actions/email.actions"
 
 const ReminderInput = ({
   reminders,
@@ -63,6 +64,19 @@ const ReminderInput = ({
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setGenerating(true)
+
+    if (data.prompt === "test email") {
+      try {
+        await sendEmail(user.userId)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setGenerating(false)
+        form.setValue("prompt", "")
+      }
+
+      return
+    }
 
     try {
       const summary = await createSummary(data.prompt)
