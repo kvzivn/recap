@@ -71,7 +71,7 @@ const AuthForm = ({ type }: { type: string }) => {
   }
 
   return (
-    <section className={cn("transition-opacity", fadeOut && "opacity-0")}>
+    <section>
       <header className="flex flex-col mb-8 gap-5 md:gap-6 items-center">
         <Logo />
         <div className="flex flex-col gap-1 md:gap-3">
@@ -146,13 +146,13 @@ const AuthForm = ({ type }: { type: string }) => {
         className="group"
       >
         <div className="mt-8 transition-colors group-hover:border-slate-400">
-          <p className="text-base sm:text-[0.8125rem] text-center transition-colors text-neutral-7 group-hover:text-black">
+          <p className="text-base sm:text-[0.8125rem] text-center transition-colors dark:text-stone-400 group-hover:text-black dark:group-hover:text-stone-200">
             {type === "sign-in"
               ? "Don't have an account?"
               : "Already have an account?"}
             <span className="font-semibold ml-1">
               {type === "sign-in" ? "Sign up" : "Log in"}
-              <ArrowRight className="h-4 w-4 ml-0.5 inline transition group-hover:translate-x-0.5 group-hover:text-primary" />
+              <ArrowRight className="h-4 w-4 ml-0.5 inline transition group-hover:translate-x-0.5 group-hover:text-primary dark:text-stone-400 dark:group-hover:text-stone-200" />
             </span>
           </p>
         </div>

@@ -3,6 +3,7 @@ import localFont from "next/font/local"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 import Hotjar from "@/components/Hotjar"
+import { ThemeProvider } from "next-themes"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -84,11 +85,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`px-7 sm:px-0 ${geistSans.variable} ${geistMono.variable} font-sans tracking-wide bg-stone-100 text-primary`}
+        className={`px-7 sm:px-0 ${geistSans.variable} ${geistMono.variable} font-sans tracking-wide bg-neutral-100 text-primary dark:bg-neutral-900 dark:text-neutral-100`}
       >
-        {children}
-        <Toaster />
-        <Hotjar />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+          <Hotjar />
+        </ThemeProvider>
       </body>
     </html>
   )

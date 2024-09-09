@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils"
 import { pricingCopy, landingCopy, howItWorksCopy } from "@/lib/copy"
 import { useRouter } from "next/navigation"
 import { logoutAccount } from "@/lib/actions/user.actions"
-import Logo from "@/components/Logo"
 import MobileMenu from "./MobileMenu"
 import Checkout from "./Checkout"
+import Logo from "./Logo"
 
 const Header = ({ user }: { user?: User }) => {
   const router = useRouter()
@@ -53,15 +53,26 @@ const Header = ({ user }: { user?: User }) => {
     }
   }, [content])
 
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: (i: number) => {
+      const delay = 1 + i * 0.5
+      return {
+        pathLength: 1,
+        opacity: 1,
+        transition: {
+          pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
+          opacity: { delay, duration: 0.01 },
+        },
+      }
+    },
+  }
+
   return (
     <>
       <header className="relative flex items-center justify-between">
-        <Logo
-          resetContent={resetContent}
-          showMobileMenu={showMobileMenu}
-          setShowMobileMenu={setShowMobileMenu}
-          className="-ml-3"
-        />
+        <Logo resetContent={resetContent} className="-ml-3" />
+
         <div className="flex items-center gap-4 -mr-3">
           {user ? (
             <>

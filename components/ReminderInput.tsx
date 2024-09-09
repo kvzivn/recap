@@ -111,9 +111,9 @@ const ReminderInput = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={`group flex items-center gap-4 w-full pl-1 pr-2 py-1 border-2 border-input rounded-lg bg-neutral-50 ${
+        className={`group flex items-center gap-4 w-full pl-1 pr-2 py-1 border-2 border-input dark:border-neutral-800 rounded-lg bg-neutral-50 dark:bg-neutral-900 ${
           user.remindersLeft > 0
-            ? "hover:bg-white hover:border-stone-300 focus-within:border-stone-500 focus-within:bg-white focus-within:hover:border-stone-500"
+            ? "hover:bg-white hover:border-stone-300 focus-within:border-stone-600 focus-within:bg-white focus-within:hover:border-stone-500 dark:hover:bg-neutral-900 dark:hover:border-neutral-600 dark:focus-within:border-neutral-400 dark:focus-within:bg-neutral-800 dark:focus-within:hover:border-neutral-400"
             : ""
         } transition-colors`}
       >
@@ -125,7 +125,7 @@ const ReminderInput = ({
               <FormControl>
                 <Input
                   placeholder="What would you like to remember better?"
-                  className="border-none focus-visible:ring-0 text-sm"
+                  className="border-none focus-visible:ring-0 text-sm dark:bg-neutral-900 dark:text-stone-200 dark:placeholder:text-stone-400 dark:focus-visible:ring-0"
                   disabled={user.remindersLeft === 0}
                   {...field}
                 />
@@ -147,7 +147,7 @@ const ReminderInput = ({
           {cardData.map((card, index) => (
             <Card
               key={index}
-              className={`px-3 py-4 sm:p-5 w-full text-[3vw] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 transition-colors`}
+              className={`px-3 py-4 sm:p-5 w-full text-[3vw] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 dark:hover:bg-stone-700 dark:hover:border-stone-600 transition-colors`}
               onClick={() => handleCardClick(card.prompt)}
             >
               <card.icon className="w-5 h-5 sm:w-4 sm:h-4 text-muted-foreground" />

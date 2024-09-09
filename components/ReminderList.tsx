@@ -77,9 +77,10 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
                 before:-translate-x-full
                 before:animate-[shimmer_2s_infinite]
                 before:bg-gradient-to-r
-                before:from-transparent before:via-stone-400/50 before:to-transparent"
+                before:from-transparent before:via-stone-400/50 before:to-transparent
+                dark:before:via-stone-700/40"
             >
-              <div className="w-full h-5 bg-neutral-200/50 rounded-md" />
+              <div className="w-full h-5 bg-neutral-200/50 dark:bg-neutral-800/40 rounded-md" />
             </div>
           </div>
         ) : null}

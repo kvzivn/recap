@@ -36,7 +36,7 @@ const Landing = () => {
       <Header />
 
       <main
-        className="flex flex-col justify-center space-y-6 text-neutral-600 leading-loose"
+        className="flex flex-col justify-center space-y-6 text-neutral-600 dark:text-neutral-300 leading-loose"
         dangerouslySetInnerHTML={{ __html: landingCopy }}
       />
 
