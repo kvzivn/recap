@@ -28,6 +28,14 @@ export async function POST(request: Request) {
     const newTransaction = await createTransaction(transaction)
 
     return NextResponse.json({ message: "OK", transaction: newTransaction })
+  } else if (eventType === "checkout.session.expired") {
+    const { id, metadata } = event.data.object
+
+    console.log(
+      `Checkout session ${id} has expired for buyer ${metadata?.buyerId}`
+    )
+
+    return NextResponse.json({ message: "Checkout session expired" })
   }
 
   return new Response("", { status: 200 })
