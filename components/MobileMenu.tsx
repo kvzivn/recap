@@ -84,7 +84,7 @@ const MobileMenu = ({
       <AnimatePresence>
         {showMobileMenu && (
           <motion.div
-            className="absolute top-16 left-0 h-screen w-full bg-stone-100 py-16"
+            className="absolute top-16 left-0 h-screen w-full bg-stone-100 dark:bg-neutral-900 py-16"
             initial="closed"
             animate="open"
             exit="closed"
