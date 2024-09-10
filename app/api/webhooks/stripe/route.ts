@@ -4,6 +4,7 @@ import stripe from "stripe"
 
 export async function POST(request: Request) {
   console.log("Webhook received")
+  console.log("NODE_ENV:", process.env.NODE_ENV)
 
   const body = await request.text()
   console.log("Raw body:", body.substring(0, 100) + "...") // Log first 100 chars
@@ -11,12 +12,27 @@ export async function POST(request: Request) {
   const sig = request.headers.get("stripe-signature") as string
   console.log("Stripe signature:", sig)
 
-  const endpointSecret =
-    process.env.NODE_ENV === "production"
-      ? process.env.STRIPE_LIVE_WEBHOOK_SECRET!
-      : process.env.STRIPE_TEST_WEBHOOK_SECRET!
-  console.log("Using endpoint secret:", endpointSecret.substring(0, 5) + "...") // First 5 chars for safety
-  console.log("NODE_ENV:", process.env.NODE_ENV)
+  let endpointSecret: string | undefined
+  if (process.env.NODE_ENV === "production") {
+    endpointSecret = process.env.STRIPE_LIVE_WEBHOOK_SECRET
+    console.log("Using LIVE webhook secret")
+  } else {
+    endpointSecret = process.env.STRIPE_TEST_WEBHOOK_SECRET
+    console.log("Using TEST webhook secret")
+  }
+
+  if (!endpointSecret) {
+    console.error("Webhook secret is undefined")
+    return NextResponse.json(
+      { message: "Server configuration error" },
+      { status: 500 }
+    )
+  }
+
+  console.log(
+    "Endpoint secret defined:",
+    endpointSecret.substring(0, 5) + "..."
+  )
 
   let event
 
