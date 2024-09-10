@@ -18,6 +18,7 @@ import { useReminderContext } from "@/app/contexts/ReminderContext"
 import { useEffect } from "react"
 import { updateUserRemindersLeft } from "@/lib/actions/user.actions"
 import { sendEmail } from "@/lib/actions/email.actions"
+import { cn } from "@/lib/utils"
 
 const ReminderInput = ({
   reminders,
@@ -109,48 +110,55 @@ const ReminderInput = ({
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className={`group flex items-center gap-4 w-full pl-1 pr-2 py-1 border-2 border-input dark:border-neutral-800 rounded-lg bg-neutral-50 dark:bg-neutral-900 ${
-          user.remindersLeft > 0
-            ? "hover:bg-white hover:border-stone-300 focus-within:border-stone-600 focus-within:bg-white focus-within:hover:border-stone-500 dark:hover:bg-neutral-900 dark:hover:border-neutral-600 dark:focus-within:border-neutral-400 dark:focus-within:bg-neutral-800 dark:focus-within:hover:border-neutral-400"
-            : ""
-        } transition-colors`}
-      >
-        <FormField
-          control={form.control}
-          name="prompt"
-          render={({ field }) => (
-            <FormItem className="flex w-full flex-col">
-              <FormControl>
-                <Input
-                  placeholder="What would you like to remember better?"
-                  className="border-none focus-visible:ring-0 text-sm dark:bg-neutral-900 dark:text-stone-200 dark:placeholder:text-stone-400 dark:focus-visible:ring-0"
-                  disabled={user.remindersLeft === 0}
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <Button
-          size="icon"
-          variant="ghost"
-          disabled={generating || !form.watch("prompt")}
+      {user.remindersLeft > 0 && (
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className={`group flex items-center gap-4 w-full pl-1 pr-2 py-1 border-2 border-input dark:border-neutral-800 rounded-lg bg-neutral-50 dark:bg-neutral-900 ${
+            user.remindersLeft > 0
+              ? "hover:bg-white hover:border-stone-300 focus-within:border-stone-600 focus-within:bg-white focus-within:hover:border-stone-500 dark:hover:bg-neutral-900 dark:hover:border-neutral-600 dark:focus-within:border-neutral-400 dark:focus-within:bg-neutral-800 dark:focus-within:hover:border-neutral-400"
+              : ""
+          } transition-colors`}
         >
-          {generating ? <Spinner /> : <PaperPlaneIcon className="w-5 h-5" />}
-        </Button>
-      </form>
+          <FormField
+            control={form.control}
+            name="prompt"
+            render={({ field }) => (
+              <FormItem className="flex w-full flex-col">
+                <FormControl>
+                  <Input
+                    placeholder="What would you like to remember better?"
+                    className="border-none focus-visible:ring-0 text-sm dark:bg-neutral-900 dark:text-stone-200 dark:placeholder:text-neutral-100 dark:focus-visible:ring-0"
+                    disabled={user.remindersLeft === 0}
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <Button
+            size="icon"
+            variant="ghost"
+            disabled={generating || !form.watch("prompt")}
+          >
+            {generating ? <Spinner /> : <PaperPlaneIcon className="w-5 h-5" />}
+          </Button>
+        </form>
+      )}
 
       {reminders.length === 0 && (
-        <div className="flex items-end mt-8 gap-4 space-y-4">
+        <div
+          className={cn(
+            "flex items-end mt-8 gap-4 space-y-4",
+            user.remindersLeft > 0 ? "mt-8" : "mt-0"
+          )}
+        >
           {cardData.map((card, index) => (
             <Card
               key={index}
-              className={`px-3 py-4 sm:p-5 w-full text-[3vw] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 dark:hover:bg-stone-700 dark:hover:border-stone-600 transition-colors`}
+              className={`px-3 py-4 sm:p-5 w-full text-[3vw] sm:text-sm cursor-pointer hover:bg-white hover:border-stone-300 dark:hover:bg-neutral-800 dark:hover:border-neutral-600 transition-colors`}
               onClick={() => handleCardClick(card.prompt)}
             >
-              <card.icon className="w-5 h-5 sm:w-4 sm:h-4 text-muted-foreground" />
+              <card.icon className="w-5 h-5 sm:w-4 sm:h-4 text-muted-foreground dark:text-neutral-300" />
               <p className="pl-1 sm:pl-0 mt-4 sm:mt-5">{card.prompt}</p>
             </Card>
           ))}

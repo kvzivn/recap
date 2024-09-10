@@ -20,7 +20,7 @@ const HomeWrapper = ({
   }, [initialReminders, setGenerating])
 
   return (
-    <div>
+    <div className="space-y-10">
       <ReminderInput reminders={initialReminders} user={user} />
       <ReminderList reminders={initialReminders} />
     </div>
