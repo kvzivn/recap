@@ -21,7 +21,7 @@ const siteConfig = {
   ogImage:
     "https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d9ae3f002ebc01e3c6/view?project=66afd4ad0003766d66f5&project=66afd4ad0003766d66f5&mode=admin",
   description:
-    "Remember more and retain what matters. Focused on simplicity and ease-of-use.",
+    "Recap helps you remember more and retain what matters. Focused on simplicity and ease-of-use.",
 }
 
 export const metadata: Metadata = {
@@ -83,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html>
       <body
         className={`px-7 sm:px-0 ${geistSans.variable} ${geistMono.variable} font-sans tracking-wide bg-neutral-100 text-primary dark:bg-neutral-900 dark:text-neutral-100`}
       >
