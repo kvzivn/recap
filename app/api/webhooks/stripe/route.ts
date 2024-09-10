@@ -1,26 +1,18 @@
 import { createTransaction } from "@/lib/actions/transactions.actions"
 import { NextResponse } from "next/server"
-import Stripe from "stripe"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-06-20",
-})
+import stripe from "stripe"
 
 export async function POST(request: Request) {
   const body = await request.text()
-  const sig = request.headers.get("stripe-signature")!
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
+  const sig = request.headers.get("stripe-signature") as string
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET_TEST!
 
-  let event: Stripe.Event
+  let event
 
   try {
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret)
-  } catch (err: any) {
-    console.error(`Webhook Error: ${err.message}`)
-    return NextResponse.json(
-      { message: `Webhook Error: ${err.message}` },
-      { status: 400 }
-    )
+  } catch (err) {
+    return NextResponse.json({ message: "Webhook error", error: err })
   }
 
   const eventType = event.type
