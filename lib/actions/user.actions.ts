@@ -139,3 +139,19 @@ export const addUserReminders = async (userId: string, reminders: number) => {
     console.log(error)
   }
 }
+
+export const getUserByRaycastKey = async (raycastKey: string) => {
+  try {
+    const { database } = await createAdminClient()
+
+    const user = await database.listDocuments(
+      DATABASE_ID!,
+      USER_COLLECTION_ID!,
+      [Query.equal("raycastKey", [raycastKey])]
+    )
+
+    return parseStringify(user.documents[0])
+  } catch (error) {
+    console.log(error)
+  }
+}

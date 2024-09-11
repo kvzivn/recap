@@ -56,7 +56,7 @@ const Header = ({ user }: { user?: User }) => {
   return (
     <>
       <header className="relative flex items-center justify-between">
-        <Logo resetContent={resetContent} className="-ml-" />
+        <Logo resetContent={resetContent} className="-ml-3" />
 
         <div className="flex items-center gap-4 -mr-3">
           {user ? (
