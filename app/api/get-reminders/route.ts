@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { getUserByRaycastKey } from "@/lib/actions/user.actions"
 import { getReminders } from "@/lib/actions/reminder.actions"
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
     const raycastKey = req.headers.get("Authorization")?.split("Bearer ")[1]
     if (!raycastKey) {
