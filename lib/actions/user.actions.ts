@@ -5,6 +5,7 @@ import { createAdminClient, createSessionClient } from "./appwrite.actions"
 import { cookies } from "next/headers"
 import { parseStringify } from "../utils"
 import { revalidatePath } from "next/cache"
+import { v4 as uuidv4 } from "uuid"
 
 const { DATABASE_ID, USER_COLLECTION_ID } = process.env
 
@@ -65,6 +66,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       {
         ...userData,
         userId: newUserAccount.$id,
+        raycastKey: uuidv4(),
       }
     )
 
