@@ -87,6 +87,8 @@ export default function RootLayout({
       <body
         className={`px-7 sm:px-0 ${geistSans.variable} ${geistMono.variable} font-sans tracking-wide bg-neutral-100 text-primary dark:bg-neutral-900 dark:text-neutral-100`}
       >
+        <div className="absolute inset-x-0 h-[480px] bg-gradient-to-b from-[#7e470635] dark:from-[#edce8b35] to-transparent opacity-40" />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -76,7 +76,7 @@ const Header = ({ user }: { user?: User }) => {
                 showMobileMenu={showMobileMenu}
                 setShowMobileMenu={setShowMobileMenu}
               />
-              <div className="hidden sm:flex items-center gap-4 -mr-3">
+              <div className="hidden sm:flex items-center gap-4">
                 <Button
                   variant="link"
                   className={cn(howItWorksVisible ? "underline" : "")}

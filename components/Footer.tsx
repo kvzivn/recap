@@ -10,7 +10,7 @@ const Footer = () => {
           Sign up now <ArrowRight className="h-4 w-4 ml-1.5" />
         </Link>
       </Button>
-      <Button variant="link" asChild className="-ml-3">
+      <Button variant="link" asChild className="-mr-3">
         <Link href="https://kevinivan.com" target="_blank">
           Made with ♡
         </Link>

@@ -67,6 +67,12 @@
     }
   }
 
+  body {
+    background-image: url(/stars.png);
+    background-position: 0 0;
+    background-size: 1440px;
+  }
+
   input {
     @apply autofill:shadow-[inset_0_0_0px_1000px_#fafafa] focus-visible:autofill:shadow-[inset_0_0_0px_1000px_#fff] hover:autofill:shadow-[inset_0_0_0px_1000px_#fff] group-hover:autofill:shadow-[inset_0_0_0px_1000px_#fff]
     dark:autofill:shadow-[inset_0_0_0px_1000px_#1c1917] dark:focus-visible:autofill:shadow-[inset_0_0_0px_1000px_#292524] dark:hover:autofill:shadow-[inset_0_0_0px_1000px_#292524] dark:group-hover:autofill:shadow-[inset_0_0_0px_1000px_#292524];

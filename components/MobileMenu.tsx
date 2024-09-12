@@ -91,7 +91,7 @@ const MobileMenu = ({
             variants={menuVariants}
           >
             <motion.div
-              className="flex flex-col items-start gap-8"
+              className="flex flex-col items-center gap-10"
               initial="closed"
               animate="open"
               variants={itemVariants}
