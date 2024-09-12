@@ -40,7 +40,7 @@ const Landing = () => {
         dangerouslySetInnerHTML={{ __html: landingCopy }}
       />
 
-      <Separator className="-mt-2" />
+      {/* <Separator className="-mt-2" /> */}
 
       <Footer />
     </div>

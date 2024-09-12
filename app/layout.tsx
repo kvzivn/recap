@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 import Hotjar from "@/components/Hotjar"
 import { ThemeProvider } from "next-themes"
+import ScreenSizeIndicator from "@/components/ScreenSizeIndicator"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -87,8 +88,7 @@ export default function RootLayout({
       <body
         className={`px-7 sm:px-0 ${geistSans.variable} ${geistMono.variable} font-sans tracking-wide bg-neutral-100 text-primary dark:bg-neutral-900 dark:text-neutral-100`}
       >
-        <div className="absolute inset-x-0 h-[480px] bg-gradient-to-b from-[#7e470635] dark:from-[#edce8b35] to-transparent opacity-40" />
-
+        <div className="absolute pointer-events-none inset-x-0 h-[24rem] bg-gradient-to-b from-[#afaca935] dark:from-[#edce8b25] to-transparent opacity-40" />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -98,6 +98,7 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Hotjar />
+          <ScreenSizeIndicator />
         </ThemeProvider>
       </body>
     </html>
