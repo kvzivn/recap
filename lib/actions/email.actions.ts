@@ -53,10 +53,21 @@ export async function scheduleEmail(userId?: string) {
     return
   }
 
-  const emailHTML = generateRecapEmail(remindersToSend)
+  console.log(
+    `Generating email for ${userId} with ${remindersToSend.length} reminders`
+  )
+
+  let emailHTML: string
 
   try {
-    await messaging.createEmail(
+    emailHTML = generateRecapEmail(remindersToSend)
+  } catch (error) {
+    console.error("Error generating email HTML:", error)
+    throw new Error("Failed to generate email content")
+  }
+
+  try {
+    const emailResult = await messaging.createEmail(
       ID.unique(),
       "Your personal reminders",
       emailHTML,
@@ -70,16 +81,25 @@ export async function scheduleEmail(userId?: string) {
       true
     )
 
+    if (!emailResult) {
+      throw new Error("Email creation failed")
+    }
+
     for (const reminder of remindersToSend) {
-      await databases.updateDocument(
-        DATABASE_ID!,
-        REMINDER_COLLECTION_ID!,
-        reminder.$id,
-        { timesShown: (reminder.timesShown || 0) + 1 }
-      )
+      try {
+        await databases.updateDocument(
+          DATABASE_ID!,
+          REMINDER_COLLECTION_ID!,
+          reminder.$id,
+          { timesShown: (reminder.timesShown || 0) + 1 }
+        )
+      } catch (updateError) {
+        console.error(`Error updating reminder ${reminder.$id}:`, updateError)
+      }
     }
   } catch (error) {
-    console.error("Error sending email:", error)
+    console.error("Error in email creation or reminder updates:", error)
+    throw new Error("Failed to process email and reminders")
   }
 }
 
