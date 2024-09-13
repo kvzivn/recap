@@ -39,10 +39,16 @@ export async function scheduleEmail(userId?: string) {
     })
     .filter((reminder) => {
       const timesShown = reminder.timesShown || 0
-      const nextReminderDate = new Date(reminder.$createdAt)
-      nextReminderDate.setDate(
-        nextReminderDate.getDate() + getSpacedInterval(timesShown)
-      )
+      const creationDate = new Date(reminder.$createdAt)
+      const nextReminderDate = new Date(creationDate)
+
+      if (timesShown > 0) {
+        nextReminderDate.setHours(0, 0, 0, 0)
+        nextReminderDate.setDate(
+          nextReminderDate.getDate() + getSpacedInterval(timesShown)
+        )
+      }
+
       return nextReminderDate <= now
     })
     .sort((a, b) => a.timesShown - b.timesShown)
