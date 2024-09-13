@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import { NextRequest, NextResponse } from "next/server"
 import { getUserByRaycastKey } from "@/lib/actions/user.actions"
 import { getReminders } from "@/lib/actions/reminder.actions"
