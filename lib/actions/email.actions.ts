@@ -28,16 +28,25 @@ export async function scheduleEmail(userId?: string) {
     ]
   )
 
-  const remindersToSend: Reminder[] = (
-    reminders.documents as Reminder[]
-  ).filter((reminder) => {
-    const timesShown = reminder.timesShown || 0
-    const nextReminderDate = new Date(reminder.createdAt)
-    nextReminderDate.setDate(
-      nextReminderDate.getDate() + getSpacedInterval(timesShown)
-    )
-    return nextReminderDate <= now
-  })
+  const remindersToSend: Reminder[] = (reminders.documents as Reminder[])
+    .filter((doc): doc is Reminder => {
+      if (
+        typeof doc.$createdAt !== "string" ||
+        typeof doc.timesShown !== "number"
+      ) {
+        console.warn("Invalid reminder document:", doc)
+        return false
+      }
+      return true
+    })
+    .filter((reminder) => {
+      const timesShown = reminder.timesShown || 0
+      const nextReminderDate = new Date(reminder.$createdAt)
+      nextReminderDate.setDate(
+        nextReminderDate.getDate() + getSpacedInterval(timesShown)
+      )
+      return nextReminderDate <= now
+    })
 
   if (remindersToSend.length === 0) {
     console.log("No reminders to send for user:", userId)
