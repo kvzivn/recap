@@ -21,12 +21,10 @@ export async function scheduleEmail(userId?: string) {
   const reminders = await databases.listDocuments(
     DATABASE_ID!,
     REMINDER_COLLECTION_ID!,
-    [
-      Query.equal("userId", userId),
-      Query.orderAsc("$createdAt"),
-      Query.limit(3),
-    ]
+    [Query.equal("userId", userId), Query.orderAsc("$createdAt")]
   )
+
+  console.log("Found", reminders.documents.length, "reminders for user", userId)
 
   const remindersToSend: Reminder[] = (reminders.documents as Reminder[])
     .filter((doc): doc is Reminder => {
@@ -47,15 +45,17 @@ export async function scheduleEmail(userId?: string) {
       )
       return nextReminderDate <= now
     })
+    .sort((a, b) => a.timesShown - b.timesShown)
+    .slice(0, 3)
 
   if (remindersToSend.length === 0) {
     console.log("No reminders to send for user:", userId)
     return
+  } else {
+    console.log(
+      `Generating email for ${userId} with ${remindersToSend.length} reminders`
+    )
   }
-
-  console.log(
-    `Generating email for ${userId} with ${remindersToSend.length} reminders`
-  )
 
   let emailHTML: string
 
