@@ -15,7 +15,7 @@ export async function GET() {
     )
 
     for (const user of users.documents) {
-      await scheduleEmail(user.$id)
+      await scheduleEmail(user.userId)
     }
 
     return new Response(
