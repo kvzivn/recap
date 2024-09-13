@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { Separator } from "@/components/ui/separator"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import { landingCopy } from "@/lib/copy"
@@ -39,8 +38,6 @@ const Landing = () => {
         className="flex flex-col justify-center space-y-6 text-neutral-600 dark:text-neutral-300 leading-loose"
         dangerouslySetInnerHTML={{ __html: landingCopy }}
       />
-
-      {/* <Separator className="-mt-2" /> */}
 
       <Footer />
     </div>

@@ -10,7 +10,12 @@ import {
 import { generateRecapEmail } from "../emails/recapTemplate"
 import { Reminder } from "../types/appwrite.types"
 
-export async function scheduleEmail(userId: string) {
+export async function scheduleEmail(userId?: string) {
+  if (!userId) {
+    console.log("No user ID provided for scheduling emails")
+    return
+  }
+
   const now = new Date()
 
   const reminders = await databases.listDocuments(
@@ -19,7 +24,7 @@ export async function scheduleEmail(userId: string) {
     [
       Query.equal("userId", userId),
       Query.orderAsc("$createdAt"),
-      Query.limit(5),
+      Query.limit(3),
     ]
   )
 
