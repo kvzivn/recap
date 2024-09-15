@@ -54,7 +54,11 @@ const MobileMenu = ({
 
   return (
     <div className="sm:hidden">
-      <Button variant="ghost" onClick={toggleMenu} className="p-2">
+      <Button
+        variant="ghost"
+        onClick={toggleMenu}
+        className="py-3 hover:bg-transparent hover:dark:bg-transparent"
+      >
         <AnimatePresence mode="wait">
           {isMobileMenuOpen ? (
             <motion.div
@@ -98,10 +102,7 @@ const MobileMenu = ({
               <motion.div variants={itemVariants} custom={0}>
                 <Button
                   variant="ghost"
-                  className={cn(
-                    "text-xl hover:bg-transparent hover:dark:bg-transparent",
-                    howItWorksVisible && "bg-gray-100"
-                  )}
+                  className="text-xl hover:bg-transparent hover:dark:bg-transparent"
                   onClick={() => {
                     toggleMenu()
                     setTimeout(() => {
@@ -115,10 +116,7 @@ const MobileMenu = ({
               <motion.div variants={itemVariants} custom={1}>
                 <Button
                   variant="ghost"
-                  className={cn(
-                    "text-xl hover:bg-transparent hover:dark:bg-transparent",
-                    pricingVisible && "bg-gray-100"
-                  )}
+                  className="text-xl hover:bg-transparent hover:dark:bg-transparent"
                   onClick={() => {
                     toggleMenu()
                     setTimeout(() => {
