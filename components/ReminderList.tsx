@@ -16,7 +16,7 @@ import {
 } from "./ui/accordion"
 import { Reminder } from "@/lib/types/appwrite.types"
 import DeleteButton from "@/components/DeleteButton"
-import { useReminderContext } from "@/app/contexts/ReminderContext"
+import { useReminderContext } from "@/lib/context/ReminderContext"
 
 const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
   const { generating } = useReminderContext()

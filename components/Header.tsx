@@ -17,7 +17,6 @@ const Header = ({ user }: { user?: User }) => {
   const [howItWorksVisible, setHowItWorksVisible] = useState(false)
   const [content, setContent] = useState(landingCopy)
   const [isAnimating, setIsAnimating] = useState(false)
-  const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   const handleLogout = async () => {
     await logoutAccount()
@@ -73,8 +72,6 @@ const Header = ({ user }: { user?: User }) => {
                 showPricing={showPricing}
                 howItWorksVisible={howItWorksVisible}
                 pricingVisible={pricingVisible}
-                showMobileMenu={showMobileMenu}
-                setShowMobileMenu={setShowMobileMenu}
               />
               <div className="hidden sm:flex items-center gap-4">
                 <Button

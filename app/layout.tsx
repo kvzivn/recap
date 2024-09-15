@@ -1,20 +1,11 @@
 import type { Metadata } from "next"
-import localFont from "next/font/local"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 import Hotjar from "@/components/Hotjar"
 import { ThemeProvider } from "next-themes"
 import ScreenSizeIndicator from "@/components/ScreenSizeIndicator"
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-sans",
-})
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-mono",
-})
+import { MobileMenuProvider } from "@/lib/context/MobileMenuContext"
+import Body from "@/components/Body"
 
 const siteConfig = {
   name: "Recap",
@@ -80,27 +71,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html suppressHydrationWarning>
-      <body
-        className={`px-7 sm:px-0 ${geistSans.variable} ${geistMono.variable} font-sans tracking-wide bg-neutral-100 text-primary dark:bg-neutral-900 dark:text-neutral-100`}
-      >
-        <div className="absolute pointer-events-none inset-x-0 h-[24rem] bg-gradient-to-b from-[#afaca935] dark:from-[#edce8b25] to-transparent opacity-40" />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-          <Hotjar />
-          <ScreenSizeIndicator />
-        </ThemeProvider>
-      </body>
-    </html>
+    <MobileMenuProvider>
+      <html suppressHydrationWarning>
+        <Body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster />
+            <Hotjar />
+            <ScreenSizeIndicator />
+          </ThemeProvider>
+        </Body>
+      </html>
+    </MobileMenuProvider>
   )
 }

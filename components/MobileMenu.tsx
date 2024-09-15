@@ -3,24 +3,23 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+import { useMobileMenu } from "@/lib/context/MobileMenuContext"
 
 const MobileMenu = ({
   showHowItWorks,
   showPricing,
   howItWorksVisible,
   pricingVisible,
-  showMobileMenu,
-  setShowMobileMenu,
 }: {
   showHowItWorks: () => void
   showPricing: () => void
   howItWorksVisible: boolean
   pricingVisible: boolean
-  showMobileMenu: boolean
-  setShowMobileMenu: (showMobileMenu: boolean) => void
 }) => {
+  const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenu()
+
   const toggleMenu = () => {
-    setShowMobileMenu(!showMobileMenu)
+    setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
   const menuVariants = {
@@ -57,7 +56,7 @@ const MobileMenu = ({
     <div className="sm:hidden">
       <Button variant="ghost" onClick={toggleMenu} className="p-2">
         <AnimatePresence mode="wait">
-          {showMobileMenu ? (
+          {isMobileMenuOpen ? (
             <motion.div
               key="x"
               initial={{ rotate: 0 }}
@@ -82,7 +81,7 @@ const MobileMenu = ({
       </Button>
 
       <AnimatePresence>
-        {showMobileMenu && (
+        {isMobileMenuOpen && (
           <motion.div
             className="absolute top-16 left-0 h-screen w-full bg-stone-100 dark:bg-neutral-900 py-16"
             initial="closed"
@@ -100,7 +99,7 @@ const MobileMenu = ({
                 <Button
                   variant="ghost"
                   className={cn(
-                    "pl-0 text-xl",
+                    "text-xl hover:bg-transparent hover:dark:bg-transparent",
                     howItWorksVisible && "bg-gray-100"
                   )}
                   onClick={() => {
@@ -117,7 +116,7 @@ const MobileMenu = ({
                 <Button
                   variant="ghost"
                   className={cn(
-                    "pl-0 text-xl",
+                    "text-xl hover:bg-transparent hover:dark:bg-transparent",
                     pricingVisible && "bg-gray-100"
                   )}
                   onClick={() => {
@@ -131,7 +130,11 @@ const MobileMenu = ({
                 </Button>
               </motion.div>
               <motion.div variants={itemVariants} custom={2}>
-                <Button variant="ghost" asChild className="pl-0 text-xl">
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="text-xl hover:bg-transparent hover:dark:bg-transparent"
+                >
                   <Link href="/sign-in">Log in</Link>
                 </Button>
               </motion.div>

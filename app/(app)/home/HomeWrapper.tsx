@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { useReminderContext } from "@/app/contexts/ReminderContext"
+import { useReminderContext } from "@/lib/context/ReminderContext"
 import ReminderInput from "@/components/ReminderInput"
 import ReminderList from "@/components/ReminderList"
 import { Reminder } from "@/lib/types/appwrite.types"

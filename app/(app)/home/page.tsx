@@ -1,7 +1,7 @@
 import { getReminders } from "@/lib/actions/reminder.actions"
 import { getLoggedInUser } from "@/lib/actions/user.actions"
 import { Reminder } from "@/lib/types/appwrite.types"
-import { ReminderProvider } from "@/app/contexts/ReminderContext"
+import { ReminderProvider } from "@/lib/context/ReminderContext"
 import HomeWrapper from "./HomeWrapper"
 
 const Home = async () => {
