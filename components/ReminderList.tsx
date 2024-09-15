@@ -90,7 +90,7 @@ const ReminderList = ({ reminders }: { reminders: Reminder[] }) => {
             <AccordionTrigger>
               <div className="flex items-center gap-3">
                 {getIcon(reminder.summary)}
-                <div className="pt-0.25 font-mediumtext-sm">
+                <div className="max-w-[19.5rem] sm:max-w-[30rem] pt-0.25 font-medium text-sm truncate">
                   {reminder.prompt}
                 </div>
               </div>
