@@ -70,8 +70,6 @@ const Header = ({ user }: { user?: User }) => {
               <MobileMenu
                 showHowItWorks={showHowItWorks}
                 showPricing={showPricing}
-                howItWorksVisible={howItWorksVisible}
-                pricingVisible={pricingVisible}
               />
               <div className="hidden sm:flex items-center gap-4">
                 <Button

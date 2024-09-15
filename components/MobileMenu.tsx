@@ -8,13 +8,9 @@ import { useMobileMenu } from "@/lib/context/MobileMenuContext"
 const MobileMenu = ({
   showHowItWorks,
   showPricing,
-  howItWorksVisible,
-  pricingVisible,
 }: {
   showHowItWorks: () => void
   showPricing: () => void
-  howItWorksVisible: boolean
-  pricingVisible: boolean
 }) => {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenu()
 
