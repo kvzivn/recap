@@ -4,7 +4,7 @@ export function generateRecapEmail(reminders: Reminder[]) {
   return `
     <html>
       <body style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 100px 20px 60px; color: #463f3a;">
-        <img src="https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d46933001424afed1d/view?project=66afd4ad0003766d66f5" alt="Logo" style="width: 30px; height: 30px; max-width: 100%; margin-bottom: 60px;">
+        <img src="https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66e84e320024dc6e2d5c/view?project=66afd4ad0003766d66f5&project=66afd4ad0003766d66f5&mode=admin" alt="Logo" style="width: 30px; height: 30px; max-width: 100%; margin-bottom: 60px;">
         ${reminders
           .map((reminder) => {
             let summary = "Couldn't create a summary of this reminder."
@@ -19,17 +19,17 @@ export function generateRecapEmail(reminders: Reminder[]) {
             const iconSrc = (() => {
               switch (category) {
                 case "book":
-                  return "https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d46968000280bbfe1b/view?project=66afd4ad0003766d66f5"
+                  return "📖"
                 case "article":
-                  return "https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d4696d001576444b7b/view?project=66afd4ad0003766d66f5"
+                  return "📝"
                 case "video":
-                  return "https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d469610013c0d264ee/view?project=66afd4ad0003766d66f5"
+                  return "🎬"
                 case "audio":
-                  return "https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d4695a003470cd6a5f/view?project=66afd4ad0003766d66f5"
+                  return "🎧"
                 case "error":
-                  return "https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d469540007ebab0dda/view?project=66afd4ad0003766d66f5"
+                  return "⚠️"
                 default:
-                  return "https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66d4694c0004e3d9d0d3/view?project=66afd4ad0003766d66f5"
+                  return "💡"
               }
             })()
 
@@ -42,13 +42,11 @@ export function generateRecapEmail(reminders: Reminder[]) {
               <div style="padding: 15px 0; margin-bottom: 20px;">
                 <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
                   <tr>
-                    <td style="vertical-align: middle; width: 24px;">
-                      <img src="${iconSrc}" alt="${category} icon" style="width: 24px; height: 24px;">
-                    </td>
                     <td style="vertical-align: middle; padding-left: 10px; padding-bottom: 4px;">
-                      <h2 style="font-size: 20px; margin: 0;">${
-                        reminder.prompt
-                      }</h2>
+                      <h2 style="font-size: 18px; margin: 0;">
+                        <span style="font-size: 20px; margin-right: 6px;">${iconSrc}</span>
+                      ${reminder.prompt}
+                      </h2>
                     </td>
                   </tr>
                 </table>

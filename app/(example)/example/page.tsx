@@ -17,8 +17,10 @@ const ExampleEmail = () => {
 
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          <Clapperboard className="w-5 h-5" />
-          <h1 className="text-lg sm:text-xl font-bold pt-0.25">Citizenfour</h1>
+          {/* <Clapperboard className="w-5 h-5" /> */}
+          <h1 className="text-lg sm:text-xl font-bold pt-0.25">
+            <span className="text-2xl mr-2">🎬</span>Citizenfour
+          </h1>
         </div>
         <div className="space-y-4">
           <p>
