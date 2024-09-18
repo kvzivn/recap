@@ -10,9 +10,9 @@ import {
 import { generateRecapEmail } from "../emails/recapTemplate"
 import { Reminder } from "../types/appwrite.types"
 
-export async function scheduleEmail(userId?: string) {
-  if (!userId) {
-    console.log("No user ID provided for scheduling emails")
+export async function scheduleEmail(userId?: string, userDocumentId?: string) {
+  if (!userId || !userDocumentId) {
+    console.log("No user provided for scheduling emails")
     return
   }
 
@@ -66,7 +66,7 @@ export async function scheduleEmail(userId?: string) {
   let emailHTML: string
 
   try {
-    emailHTML = generateRecapEmail(remindersToSend)
+    emailHTML = generateRecapEmail(remindersToSend, userDocumentId)
   } catch (error) {
     console.error("Error generating email HTML:", error)
     throw new Error("Failed to generate email content")
@@ -127,7 +127,7 @@ export async function sendEmail(userId: string) {
 
   const remindersToSend: Reminder[] = reminders.documents as Reminder[]
 
-  const emailHTML = generateRecapEmail(remindersToSend)
+  const emailHTML = generateRecapEmail(remindersToSend, userId)
 
   try {
     await messaging.createEmail(

@@ -17,10 +17,8 @@ const ExampleEmail = () => {
 
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          {/* <Clapperboard className="w-5 h-5" /> */}
-          <h1 className="text-lg sm:text-xl font-bold pt-0.25">
-            <span className="text-2xl mr-2">🎬</span>Citizenfour
-          </h1>
+          <Clapperboard className="w-5 h-5" />
+          <h1 className="text-lg sm:text-xl font-bold pt-0.25">Citizenfour</h1>
         </div>
         <div className="space-y-4">
           <p>
@@ -65,16 +63,9 @@ const ExampleEmail = () => {
       <div className="space-y-4">
         <div className="flex items-center gap-1">
           <FileText className="w-5 h-5" />
-          <Button variant="link" asChild>
-            <Link
-              href="https://www.nytimes.com/2023/02/17/business/china-chatgpt-microsoft-openai.html"
-              target="_blank"
-            >
-              <h1 className="text-lg sm:text-xl font-bold pt-0.25">
-                Why China didn&apos;t invent ChatGPT
-              </h1>
-            </Link>
-          </Button>
+          <h1 className="text-lg sm:text-xl font-bold pt-0.25">
+            Why China didn&apos;t invent ChatGPT
+          </h1>
         </div>
         <div className="space-y-4">
           <p>

@@ -127,6 +127,23 @@ export const updateUserRemindersLeft = async (
     revalidatePath("/home")
   } catch (error) {
     console.log(error)
+    throw error
+  }
+}
+
+export const updateIsUnsubscribed = async (
+  userId: string,
+  isUnsubscribed: boolean
+) => {
+  try {
+    const { database } = await createAdminClient()
+
+    await database.updateDocument(DATABASE_ID!, USER_COLLECTION_ID!, userId, {
+      unsubscribed: isUnsubscribed,
+    })
+  } catch (error) {
+    console.log(error)
+    throw error
   }
 }
 
@@ -139,6 +156,7 @@ export const addUserReminders = async (userId: string, reminders: number) => {
     })
   } catch (error) {
     console.log(error)
+    throw error
   }
 }
 
@@ -155,5 +173,6 @@ export const getUserByRaycastKey = async (raycastKey: string) => {
     return parseStringify(user.documents[0])
   } catch (error) {
     console.log(error)
+    throw error
   }
 }

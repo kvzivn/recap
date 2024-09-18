@@ -1,6 +1,9 @@
 import { Reminder } from "../types/appwrite.types"
 
-export function generateRecapEmail(reminders: Reminder[]) {
+export function generateRecapEmail(
+  reminders: Reminder[],
+  userDocumentId: string
+) {
   return `
     <html>
       <body style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 100px 20px 60px; color: #463f3a;">
@@ -62,14 +65,11 @@ export function generateRecapEmail(reminders: Reminder[]) {
             `
           })
           .join("")}
-        <hr style="border: none; border-top: 1px solid #ddd; margin: 50px 0">
-        <div style="text-align: center; padding-bottom: 80px;">
-          <div style="background-color: #f5f5f5; border-radius: 16px; margin-bottom: 40px; padding: 24px;">
-            <div>
+          <hr style="border: none; border-top: 1px solid #ddd; margin: 50px 0">
+          <div style="text-align: center; padding-bottom: 80px;">
+            <div style="margin-bottom: 40px; padding: 24px;">
               <img src="https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66e84e320024dc6e2d5c/view?project=66afd4ad0003766d66f5&mode=admin" alt="Recap" style="max-width: 100%; width: 50px; height: 50px;" />
-              <p style="font-family: Inter, sans-serif; font-size: 14px; line-height: 1.5; padding-left: 24px; padding-right: 24px;">
-                Built with <img data-emoji="❤️" style="height: 1.2em; width: 1.2em; vertical-align: middle;" alt="❤️" aria-label="❤️" draggable="false" src="https://fonts.gstatic.com/s/e/notoemoji/15.1/2764_fe0f/72.png" loading="lazy" /> by <a style="color: #414141; font-weight: 600; text-decoration: underline;" href="https://kevinivan.com" target="_blank">Kevin Ivan</a>
-              </p>
+              <a style="font-size: 12px; color: #141414; font-weight: 600; text-decoration: underline;" href="https://getrecap.xyz/unsubscribe?userId=${userDocumentId}" target="_blank">Unsubscribe</a>
             </div>
           </div>
         </div>

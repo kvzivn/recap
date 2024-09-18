@@ -15,7 +15,9 @@ export async function GET() {
     )
 
     for (const user of users.documents) {
-      await scheduleEmail(user.userId)
+      if (user.unsubscribed !== true) {
+        await scheduleEmail(user.userId, user.$id)
+      }
     }
 
     return new Response(
