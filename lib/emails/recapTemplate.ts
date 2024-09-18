@@ -6,7 +6,7 @@ export function generateRecapEmail(
 ) {
   return `
     <html>
-      <body style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 100px 20px 60px; color: #463f3a;">
+      <body style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 100px 20px 20px; color: #463f3a;">
         <img src="https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66e84e320024dc6e2d5c/view?project=66afd4ad0003766d66f5&project=66afd4ad0003766d66f5&mode=admin" alt="Recap" style="width: 50px; height: 50px; max-width: 100%; margin-bottom: 60px;">
         ${reminders
           .map((reminder) => {
@@ -47,7 +47,7 @@ export function generateRecapEmail(
                   <tr>
                     <td style="vertical-align: middle; padding-bottom: 4px;">
                       <h2 style="color: #141414; font-size: 16px; margin: 0;">
-                        <span style="font-size: 18px; margin-right: 6px;">${iconSrc}</span>
+                        <span style="margin-right: 6px;">${iconSrc}</span>
                       ${reminder.prompt}
                       </h2>
                     </td>
@@ -66,9 +66,9 @@ export function generateRecapEmail(
           })
           .join("")}
           <hr style="border: none; border-top: 1px solid #ddd; margin: 50px 0">
-          <div style="text-align: center; padding-bottom: 80px;">
-            <div style="margin-bottom: 40px; padding: 24px;">
-              <img src="https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66e84e320024dc6e2d5c/view?project=66afd4ad0003766d66f5&mode=admin" alt="Recap" style="max-width: 100%; width: 50px; height: 50px;" />
+          <div style="text-align: center;">
+            <div style="padding: 24px;">
+              <img src="https://cloud.appwrite.io/v1/storage/buckets/66d34fc900328b55d6ae/files/66e84e320024dc6e2d5c/view?project=66afd4ad0003766d66f5&mode=admin" alt="Recap" style="display: block; max-width: 100%; width: 60px; height: 60px;margin: 0 auto 50px;" />
               <a style="font-size: 12px; color: #141414; font-weight: 600; text-decoration: underline;" href="https://getrecap.xyz/unsubscribe?userId=${userDocumentId}" target="_blank">Unsubscribe</a>
             </div>
           </div>
