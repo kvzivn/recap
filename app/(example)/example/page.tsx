@@ -18,36 +18,35 @@ const ExampleEmail = () => {
       <div className="space-y-4">
         <div className="flex items-center gap-3">
           <Clapperboard className="w-5 h-5" />
-          <h1 className="text-lg sm:text-xl font-bold pt-0.25">Citizenfour</h1>
+          <h1 className="text-lg sm:text-xl font-bold pt-0.25">
+            Jennifer Doudna on CRISPR ethics
+          </h1>
         </div>
         <div className="space-y-4">
           <p>
-            Citizenfour is a documentary directed by Laura Poitras that
-            chronicles the events surrounding Edward Snowden&apos;s disclosure
-            of classified NSA documents. The film provides an in-depth look at
-            Snowden&apos;s motivations, the risks he took, and the impact of his
-            revelations on global privacy and surveillance.
+            Jennifer Doudna, a pioneering scientist in the field of CRISPR gene
+            editing, has significantly contributed to both scientific
+            advancements and the ethical discourse surrounding genome editing.
+            Her work with the CRISPR-Cas9 tool has the potential to cure
+            diseases and fundamentally alter the human race.
           </p>
           <p>
-            The documentary begins with Poitras receiving encrypted emails from
-            Snowden, who uses the alias &apos;Citizenfour.&apos; It then follows
-            her journey to Hong Kong, where she meets Snowden along with
-            journalists Glenn Greenwald and Ewen MacAskill. The film captures
-            the tense moments as Snowden reveals the extent of the NSA&apos;s
-            surveillance programs, including the collection of phone records and
-            internet data from millions of people worldwide.
+            In addition to her scientific achievements, Doudna is a prominent
+            voice in the public discussion about the ethical implications of
+            genome editing. She emphasizes the relatively low barrier to entry
+            for CRISPR-Cas9 experimentation, which raises concerns about its
+            misuse and the need for stringent ethical guidelines.
           </p>
+          <ul>
+            <li>Potential to cure diseases and change human biology</li>
+            <li>Low barrier to entry for CRISPR-Cas9 experimentation</li>
+            <li>Importance of public discussion and ethical guidelines</li>
+            <li>Concerns about misuse and long-term implications</li>
+          </ul>
           <p>
-            Key themes include the ethical implications of mass surveillance,
-            the role of whistleblowers in society, and the balance between
-            national security and individual privacy. The documentary also
-            highlights the personal sacrifices Snowden made, including leaving
-            his family and living in exile.
-          </p>
-          <p>
-            It&apos;s a compelling and thought-provoking film that raises
-            important questions about government transparency and the right to
-            privacy in the digital age.
+            Doudna advocates for responsible use of gene-editing technologies,
+            highlighting the necessity for global cooperation and regulation to
+            ensure ethical standards are maintained.
           </p>
         </div>
         <Link
@@ -61,50 +60,38 @@ const ExampleEmail = () => {
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-3">
           <FileText className="w-5 h-5" />
           <h1 className="text-lg sm:text-xl font-bold pt-0.25">
-            Why China didn&apos;t invent ChatGPT
+            How to exit Vim
           </h1>
         </div>
         <div className="space-y-4">
           <p>
-            The article explores the reasons why China did not invent a
-            technology like ChatGPT. It highlights several key factors:
-          </p>{" "}
+            Exiting Vim, a popular text editor, can be challenging for new
+            users. Here are some straightforward methods to exit Vim:
+          </p>
           <ul>
-            {" "}
             <li>
-              <strong>Regulatory Environment:</strong> China&apos;s strict
-              internet regulations and censorship policies stifle innovation in
-              AI and natural language processing. Developers face significant
-              constraints that limit their ability to create open-ended AI
-              systems.
-            </li>{" "}
+              Press the <strong>Escape</strong> key to ensure you are in command
+              mode.
+            </li>
             <li>
-              <strong>Focus on Applied AI:</strong> Chinese tech companies and
-              researchers often prioritize applied AI technologies that have
-              immediate commercial applications, such as facial recognition and
-              fintech, over more experimental AI like ChatGPT.
-            </li>{" "}
+              Type <strong>:</strong> to enter command mode, then type{" "}
+              <strong>q</strong> and press <strong>Enter</strong> to quit.
+            </li>
             <li>
-              <strong>Research and Development:</strong> While China invests
-              heavily in AI, much of the funding goes towards areas with clear
-              government and commercial interests. Basic research, which is
-              crucial for breakthroughs like ChatGPT, receives less attention.
-            </li>{" "}
+              If you want to save your changes before quitting, type{" "}
+              <strong>:wq</strong> and press <strong>Enter</strong>.
+            </li>
             <li>
-              <strong>Talent and Collaboration:</strong> The article notes that
-              the most significant AI advancements often come from collaborative
-              efforts across borders. China&apos;s geopolitical stance and
-              restrictions on academic freedom hinder such collaborations.
-            </li>{" "}
-          </ul>{" "}
+              Alternatively, you can press <strong>Shift + ZZ</strong> to save
+              and exit.
+            </li>
+          </ul>
           <p>
-            In summary, the combination of regulatory constraints, a focus on
-            applied AI, targeted R&D funding, and limited international
-            collaboration has prevented China from developing a technology like
-            ChatGPT.
+            For more advanced Vim tips, follow experts like hakluke and
+            tomnomnom on Twitter.
           </p>
         </div>
         <Link

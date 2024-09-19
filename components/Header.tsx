@@ -5,23 +5,16 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { pricingCopy, landingCopy, howItWorksCopy } from "@/lib/copy"
-import { useRouter } from "next/navigation"
-import { logoutAccount } from "@/lib/actions/user.actions"
 import MobileMenu from "./MobileMenu"
 import Checkout from "./Checkout"
 import Logo from "./Logo"
+import UserMenu from "./UserMenu"
 
 const Header = ({ user }: { user?: User }) => {
-  const router = useRouter()
   const [pricingVisible, setPricingVisible] = useState(false)
   const [howItWorksVisible, setHowItWorksVisible] = useState(false)
   const [content, setContent] = useState(landingCopy)
   const [isAnimating, setIsAnimating] = useState(false)
-
-  const handleLogout = async () => {
-    await logoutAccount()
-    router.push("/")
-  }
 
   const updateMainContent = (
     newContent: string,
@@ -61,9 +54,7 @@ const Header = ({ user }: { user?: User }) => {
           {user ? (
             <>
               <Checkout user={user} />
-              <Button variant="link" onClick={handleLogout}>
-                Log out
-              </Button>
+              <UserMenu user={user} />
             </>
           ) : (
             <div>

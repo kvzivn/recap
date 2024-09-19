@@ -13,6 +13,7 @@ declare type User = {
   email: string
   userId: string
   remindersLeft: number
+  raycastKey: string
 }
 
 declare type NewUserParams = {
