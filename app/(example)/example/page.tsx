@@ -114,9 +114,10 @@ const ExampleEmail = () => {
         </div>
         <div className="space-y-4">
           <p>
-            Ikigai is a Japanese concept that means 'a reason for being.' It is
-            the intersection of four fundamental elements that contribute to a
-            fulfilling and meaningful life. These elements are:
+            Ikigai is a Japanese concept that means &apos;a reason for
+            being.&apos; It is the intersection of four fundamental elements
+            that contribute to a fulfilling and meaningful life. These elements
+            are:
           </p>
           <ul>
             <li>
