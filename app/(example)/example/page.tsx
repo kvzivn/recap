@@ -1,11 +1,17 @@
 import Logo from "@/components/Logo"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Clapperboard, FileText, X } from "lucide-react"
+import {
+  Laptop,
+  Lightbulb,
+  MessageCircle,
+  MessagesSquare,
+  X,
+} from "lucide-react"
 import Link from "next/link"
 
 const ExampleEmail = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-20 pt-24 pb-32 max-w-2xl mx-auto text-sm">
+    <div className="flex flex-col gap-20 pt-24 pb-32 max-w-2xl mx-auto text-sm">
       <div className="flex items-center justify-between w-full">
         <Logo className="-ml-3" />
         <Button variant="ghost" size="icon" asChild>
@@ -15,42 +21,44 @@ const ExampleEmail = () => {
         </Button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <Clapperboard className="w-5 h-5" />
+          <MessagesSquare className="w-5 h-5" />
           <h1 className="text-lg sm:text-xl font-bold pt-0.25">
-            Jennifer Doudna on CRISPR ethics
+            Benefits of Immigration
           </h1>
         </div>
         <div className="space-y-4">
           <p>
-            Jennifer Doudna, a pioneering scientist in the field of CRISPR gene
-            editing, has significantly contributed to both scientific
-            advancements and the ethical discourse surrounding genome editing.
-            Her work with the CRISPR-Cas9 tool has the potential to cure
-            diseases and fundamentally alter the human race.
-          </p>
-          <p>
-            In addition to her scientific achievements, Doudna is a prominent
-            voice in the public discussion about the ethical implications of
-            genome editing. She emphasizes the relatively low barrier to entry
-            for CRISPR-Cas9 experimentation, which raises concerns about its
-            misuse and the need for stringent ethical guidelines.
+            Immigration offers numerous benefits, significantly impacting the
+            economy and society.
           </p>
           <ul>
-            <li>Potential to cure diseases and change human biology</li>
-            <li>Low barrier to entry for CRISPR-Cas9 experimentation</li>
-            <li>Importance of public discussion and ethical guidelines</li>
-            <li>Concerns about misuse and long-term implications</li>
+            <li>
+              <strong>Economic growth:</strong> Immigrants entering the labor
+              force increase the productive capacity of the economy, leading to
+              a rise in GDP. Their participation in the workforce boosts overall
+              economic activity.
+            </li>
+            <li>
+              <strong>Cultural diversity:</strong> Immigration fosters cultural
+              exchange, enriching societies with new perspectives, traditions,
+              and ideas.
+            </li>
+            <li>
+              <strong>Knowledge transfer:</strong> Migrants facilitate the
+              exchange of skills, technologies, and best practices between
+              countries.
+            </li>
+            <li>
+              <strong>Addressing labor shortages:</strong> Migrants can fill
+              gaps in the workforce, particularly in aging populations or
+              sectors with skill shortages.
+            </li>
           </ul>
-          <p>
-            Doudna advocates for responsible use of gene-editing technologies,
-            highlighting the necessity for global cooperation and regulation to
-            ensure ethical standards are maintained.
-          </p>
         </div>
         <Link
-          href="https://www.google.com/search?q=Citizenfour"
+          href="https://www.google.com/search?q=benefits+of+immigration"
           target="_blank"
         >
           <Button variant="link" className="px-0 pt-8">
@@ -59,18 +67,15 @@ const ExampleEmail = () => {
         </Link>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <FileText className="w-5 h-5" />
+          <Laptop className="w-5 h-5" />
           <h1 className="text-lg sm:text-xl font-bold pt-0.25">
             How to exit Vim
           </h1>
         </div>
         <div className="space-y-4">
-          <p>
-            Exiting Vim, a popular text editor, can be challenging for new
-            users. Here are some straightforward methods to exit Vim:
-          </p>
+          <p>Here are some straightforward methods to exit Vim:</p>
           <ul>
             <li>
               Press the <strong>Escape</strong> key to ensure you are in command
@@ -89,13 +94,9 @@ const ExampleEmail = () => {
               and exit.
             </li>
           </ul>
-          <p>
-            For more advanced Vim tips, follow experts like hakluke and
-            tomnomnom on Twitter.
-          </p>
         </div>
         <Link
-          href="https://www.google.com/search?q=Why+China+didn%27t+invent+ChatGPT"
+          href="https://www.google.com/search?q=how+to+exit+vim"
           target="_blank"
         >
           <Button variant="link" className="px-0 pt-8">
@@ -104,45 +105,45 @@ const ExampleEmail = () => {
         </Link>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <BookOpen className="w-5 h-5" />
+          <Lightbulb className="w-5 h-5" />
           <h1 className="text-lg sm:text-xl font-bold pt-0.25">
-            Brave New World
+            The components of Ikigai
           </h1>
         </div>
         <div className="space-y-4">
           <p>
-            Brave New World is a dystopian novel by Aldous Huxley, set in a
-            futuristic society where technological advancements have created a
-            seemingly perfect world. The story explores themes of control,
-            freedom, and the impact of technology on human relationships.
+            Ikigai is a Japanese concept that means 'a reason for being.' It is
+            the intersection of four fundamental elements that contribute to a
+            fulfilling and meaningful life. These elements are:
           </p>
+          <ul>
+            <li>
+              <strong>What you love:</strong> This represents your passions and
+              interests, the activities that bring you joy and satisfaction.
+            </li>
+            <li>
+              <strong>What you are good at:</strong> This encompasses your
+              skills and talents, the things you excel at and can perform well.
+            </li>
+            <li>
+              <strong>What you can get paid for:</strong> This involves your
+              profession or vocation, the work that provides financial
+              compensation and sustains your livelihood.
+            </li>
+            <li>
+              <strong>What the world needs:</strong> This reflects the problems
+              or needs in society that you can address, contributing to the
+              greater good and making a positive impact.
+            </li>
+          </ul>
           <p>
-            The society in the novel is characterized by the use of genetic
-            engineering, conditioning, and a drug called &apos;soma&apos; to
-            maintain order and happiness. People are divided into castes, with
-            Alphas at the top and Epsilons at the bottom, each conditioned to
-            accept their roles without question.
-          </p>
-          <p>
-            The protagonist, Bernard Marx, feels out of place in this society
-            and becomes increasingly disillusioned. He befriends John, a
-            &apos;savage&apos; raised outside the controlled environment, who
-            challenges the norms of the World State. John&apos;s presence and
-            his subsequent actions highlight the dehumanizing aspects of the
-            society and ultimately lead to tragic consequences.
-          </p>
-          <p>
-            Huxley&apos;s novel serves as a cautionary tale about the dangers of
-            losing individuality and freedom in the pursuit of technological and
-            societal perfection.
+            The convergence of these four elements forms the essence of ikigai,
+            guiding individuals towards a balanced and purposeful life.
           </p>
         </div>
-        <Link
-          href="https://www.google.com/search?q=Brave+New+World"
-          target="_blank"
-        >
+        <Link href="https://www.google.com/search?q=ikigai" target="_blank">
           <Button variant="link" className="px-0 pt-8">
             Read more
           </Button>

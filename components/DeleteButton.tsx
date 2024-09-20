@@ -26,14 +26,14 @@ const DeleteButton = ({ reminder }: { reminder: Reminder }) => {
       variant="outline"
       onClick={onDelete}
       disabled={isDeleting}
-      className="text-[0.95rem]"
+      size="sm"
     >
       {isDeleting ? (
         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
       ) : (
         <Trash className="w-4 h-4 mr-2" />
       )}
-      {isDeleting ? "Deleting..." : "Delete"}
+      <span className="pt-0.5">{isDeleting ? "Deleting..." : "Delete"}</span>
     </Button>
   )
 }
